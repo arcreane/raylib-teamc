@@ -36,7 +36,7 @@ Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 
 }
 
-void Board::SerCell(Vec2<int> pos_in, Color c)
+void Board::SetCell(Vec2<int> pos_in, Color c)
 {	
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width&& pos_in.getY() < height);
@@ -49,7 +49,7 @@ void Board::DrawCell(Vec2<int> pos_in) const
 	assert(pos_in.getX() < width && pos_in.getY() < height);
 	Color c=cells[pos_in.getY() * width + pos_in.getX()].getColor();
 	Vec2<int> topleft = ScreenPos + padding + (pos_in * cellSize);
-	DrawRectangle(topleft.getX(), topleft.getY(), cellSize - padding, cellSize - padding, c);
+	raycpp::DrawRectangle(topleft, Vec2{cellSize,cellSize}-padding, c);
 }
 
 void Board::Draw() const

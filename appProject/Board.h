@@ -1,5 +1,5 @@
 #pragma once
-#include <raylib.h>
+#include "raylibcpp.h"
 #include <vector>
 #include "Vec2.h"
 class Board
@@ -19,7 +19,7 @@ private:
 
 public:
 	Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in);
-	void SerCell(Vec2<int> pos_in,Color c);
+	void SetCell(Vec2<int> pos_in,Color c);
 	void DrawCell(Vec2<int> pos_in) const;
 	void Draw() const;
 private:

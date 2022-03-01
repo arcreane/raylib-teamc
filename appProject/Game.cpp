@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <assert.h>
-
+#include "Square.h"
 Game::Game(int width, int height, std::string title)
 	:board({ 200,120 }, { 10, 20 }, 20, 2)
 {	
@@ -10,9 +10,9 @@ Game::Game(int width, int height, std::string title)
 	for (int iY = 0; iY < 20; iY++)
 		for (int iX = 0; iX < 10; iX++)
 		{
-			board.SerCell({ iX, iY }, RED);
+			board.SetCell({ iX, iY }, RED);
 		}
-	
+
 
 }
 
@@ -50,5 +50,10 @@ void Game::Draw()
 
 void Game::Update()
 {
+	Square square;
+	square.getInput(1);
+	square.getInput(1);
+	for (int i = 0; i < 4; i++)
+		board.SetCell(square.getCells()[i], BLUE);
 	
 }
