@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
 #include <raylib.h>
+#include "Board.h"
 class Game
 {
 private:
 	void Draw();
 	void Update();
-	int width;
-	int height;
+	Board board;
 public:
 	Game(int width, int height, std::string title);
 	Game(const Game& other) = delete;

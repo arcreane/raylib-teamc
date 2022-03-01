@@ -152,17 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="appProject.cpp" />
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="appProject.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\RPG\raylib2d\example\resources\fudesumi_paint.png" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

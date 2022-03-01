@@ -1,12 +1,17 @@
 #include "Game.h"
 #include <assert.h>
-Game::Game(int Width, int Height, std::string title)
-	:width{Width},
-	height{Height}
-{ 
+
+Game::Game(int width, int height, std::string title)
+	:board({ 200,120 }, { 10, 20 }, 20, 2)
+{	
 	assert(!GetWindowHandle());
 	InitWindow(width, height, title.c_str());
 	SetTargetFPS(60);
+	for (int iY = 0; iY < 20; iY++)
+		for (int iX = 0; iX < 10; iX++)
+		{
+			board.SerCell({ iX, iY }, RED);
+		}
 	
 
 }
@@ -36,7 +41,8 @@ void Game::Draw()
 {
 	
 
-	ClearBackground(RAYWHITE);
+	ClearBackground(BLACK);
+	board.Draw();
 
 
 	
