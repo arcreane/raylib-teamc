@@ -2,6 +2,9 @@
 #include <assert.h>
 #include "Square.h"
 #include <iostream>
+#include "Line.h"
+#include <windows.h>
+
 
 using namespace std;
 void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board)
@@ -36,7 +39,7 @@ Game::Game(int width, int height, std::string title)
 		{
 			board.SetCell({ iX, iY }, RED);
 		}
-	shape = Square();
+	shape = Line();
 	time = 0;
 
 
@@ -81,7 +84,9 @@ void Game::Update()
 			if (shape.getCells()[i].getY() >= 0)
 				board.SetCell(shape.getCells()[i], WHITE);
 		std::vector<Vec2<int>> lastpos = shape.getCells();
-		shape.getInput(1);
+
+		//shape.getInput(1);
+
 	/*	for (int c = 0; c < 4; c++) {
 			std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
 			std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;

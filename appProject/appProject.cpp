@@ -10,10 +10,10 @@ int main(void)
 
     Game game{ screenWidth,screenHeight,"Rondo" };
  
-    while (!game.GameShouldClose())
-    {
-        game.Tick();
-    }
+    //while (!game.GameShouldClose())
+    //{
+    game.Tick();
+    //}
     
     return 0;
 }
