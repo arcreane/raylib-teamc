@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "Square.h"
 #include <iostream>
+
 using namespace std;
 void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board)
 {
