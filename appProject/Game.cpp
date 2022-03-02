@@ -8,6 +8,7 @@ Game::Game(int Width, int Height, std::string title)
 	InitWindow(width, height, title.c_str());
 	SetTargetFPS(60);
 	
+	// Hi
 
 }
 
