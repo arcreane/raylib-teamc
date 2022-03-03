@@ -3,22 +3,39 @@
 #include "Square.h"
 #include <iostream>
 using namespace std;
+void Game::setShape()
+{	
+	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false
+	
+}
+void Game::checkBottom()
+{   //If the current shape touches the bottom, stop moving and call setShape()
+}
+void Game::Controll()
+{
+	if (IsKeyDown(KEY_RIGHT)){
+		if(shape.right()<9)
+			shape.getInput(3);
+	}
+	if (IsKeyDown(KEY_LEFT)){
+		if (shape.left() > 0)
+		shape.getInput(2);
+	}
+	if (IsKeyDown(KEY_UP)) shape.getInput(4);
+	if (IsKeyDown(KEY_DOWN)) shape.getInput(1);
+}
 void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board)
 {
 
 	for (int i = 0; i < 4; i++){
 		bool mark = false;
 		for (int j = 0; j < 4; j++) {
-			std::cout << i << "lastpos x" << lastpos[i].getX() << "lastpos y" << lastpos[i].getY() << endl;
-			std::cout << pos[j].getX() << pos[j].getY() << endl;
-			cout << (lastpos[i] == pos[j]) << endl;
 			if (lastpos[i] == pos[j])
 			{
 
 				mark = true;
 			}
 		}
-		cout << "mark" << mark << endl;
 		if (mark == false)
 			if(lastpos[i].getX()>=0 && lastpos[i].getY() >= 0)
 				(*board).SetCell(lastpos[i], RED);
@@ -37,6 +54,7 @@ Game::Game(int width, int height, std::string title)
 		}
 	shape = Square();
 	time = 0;
+	bottom.resize(10);
 
 
 }
@@ -80,7 +98,7 @@ void Game::Update()
 			if (shape.getCells()[i].getY() >= 0)
 				board.SetCell(shape.getCells()[i], WHITE);
 		std::vector<Vec2<int>> lastpos = shape.getCells();
-		shape.getInput(1);
+		Controll();
 	/*	for (int c = 0; c < 4; c++) {
 			std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
 			std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;
