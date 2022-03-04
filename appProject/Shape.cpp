@@ -18,13 +18,6 @@ std::vector<Vec2<int>> Shape::getCells()
 }
 
 
-void Shape::Turn()
-{
-	cout << "Position cell " << endl;
-//	cells[0].setX(cells[0].getX() + 2);
-//	cells[0].setY(cells[0].getY() - 2);
-//	cout << "Position cell " << cells[0].getX() << endl;
-}
 
 void Shape::move(Vec2<int> dir)
 {

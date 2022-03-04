@@ -9,6 +9,7 @@ class Shape
 protected:
 	std::vector<Vec2<int>> cells;
 	void move(Vec2<int> dir);
+	virtual void Turn() {};
 public:
 	Shape();
 	std::vector<Vec2<int>> getCells();
