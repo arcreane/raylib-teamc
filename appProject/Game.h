@@ -10,7 +10,7 @@ private:
 	void Draw();
 	void Update();
 	Board board;
-	Shape* shape;
+	Shape shape;
 	void setShape();
 	std::vector<int> bottom;
 	bool atBottom;
