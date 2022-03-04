@@ -19,9 +19,6 @@ std::vector<Vec2<int>> Shape::getCells()
 }
 
 
-void Shape::retour()
-{
-}
 
 void Shape::move(Vec2<int> dir)
 {
