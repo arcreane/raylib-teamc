@@ -13,7 +13,8 @@ public:
 	Shape();
 	std::vector<Vec2<int>> getCells();
 	void getInput(int input);
-	virtual void Turn();
+	int right();
+	int left();
 
 };
 

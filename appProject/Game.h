@@ -3,14 +3,19 @@
 #include <raylib.h>
 #include "Board.h"
 #include "Shape.h"
-#include "LLeft.h"
+#include <vector>
 class Game
 {
 private:
 	void Draw();
 	void Update();
 	Board board;
-	Shape* shape;
+	Shape shape;
+	void setShape();
+	std::vector<int> bottom;
+	bool atBottom;
+	void checkBottom();
+	void Controll();
 	int time;
 	void animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board);
 public:

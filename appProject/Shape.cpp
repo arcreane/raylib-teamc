@@ -1,7 +1,6 @@
 #include "Shape.h"
 #include <stdlib.h>
 #include <iostream>
-using namespace std;
 
 Shape::Shape()
 {	
@@ -50,5 +49,33 @@ void Shape::getInput(int input)
 		Turn();
 	}
 	}
+
+int Shape::right()
+{
+	int max=0;
+	for (int i = 0; i < 4; i++) {
+	
+		if (cells[i].getX() > max){
+			max = cells[i].getX();
+		}
+	
+		}
+
+	return max;
+}
+
+int Shape::left()
+{
+	int min = 9;
+	for (int i = 0; i < 4; i++) {
+		
+		if (cells[i].getX() < min) {
+			min = cells[i].getX();
+		}
+	
+		}
+
+	return min;
+}
 	
 
