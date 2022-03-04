@@ -131,6 +131,9 @@ void Game::Draw()
 void Game::Update()
 {
 	setShape();
+	
+
+	shape->getInput(1);
 	if (!atBottom) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
