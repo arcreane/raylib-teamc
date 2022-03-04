@@ -36,6 +36,15 @@
     <ClCompile Include="Square.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LRight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LLeft.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -56,6 +65,14 @@
     <ClInclude Include="Square.h">
       <Filter>头文件</Filter>
     </ClInclude>
-
+    <ClInclude Include="Line.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LRight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LLeft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

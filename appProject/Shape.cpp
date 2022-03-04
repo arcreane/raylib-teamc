@@ -1,5 +1,7 @@
 #include "Shape.h"
 #include <stdlib.h>
+#include <iostream>
+using namespace std;
 
 Shape::Shape()
 {	
@@ -9,7 +11,6 @@ Shape::Shape()
 	cells[2] = Vec2{ 0,0 };
 	cells[3] = Vec2{ 0,0 };
 
-
 }
 
 std::vector<Vec2<int>> Shape::getCells()
@@ -18,8 +19,12 @@ std::vector<Vec2<int>> Shape::getCells()
 }
 
 
-void Shape::retour()
+void Shape::Turn()
 {
+	cout << "Position cell " << endl;
+//	cells[0].setX(cells[0].getX() + 2);
+//	cells[0].setY(cells[0].getY() - 2);
+//	cout << "Position cell " << cells[0].getX() << endl;
 }
 
 void Shape::move(Vec2<int> dir)
@@ -42,7 +47,7 @@ void Shape::getInput(int input)
 		move(Vec2{ 1,0 });
 	}
 	if (input == 4) {
-		retour();
+		Turn();
 	}
 	}
 	

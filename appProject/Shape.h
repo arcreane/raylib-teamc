@@ -8,12 +8,12 @@ class Shape
 
 protected:
 	std::vector<Vec2<int>> cells;
-	void retour();
 	void move(Vec2<int> dir);
 public:
 	Shape();
 	std::vector<Vec2<int>> getCells();
 	void getInput(int input);
+	virtual void Turn();
 
 };
 

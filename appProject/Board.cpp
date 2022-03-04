@@ -3,6 +3,7 @@
 Board::Cell::Cell()
 	:bExists{false},
 	c{WHITE}
+
 {
 
 }
