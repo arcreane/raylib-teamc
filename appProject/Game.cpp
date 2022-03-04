@@ -15,6 +15,8 @@ void Game::setShape()
 {
 	if (atBottom) {
 		shape = new LLeft();
+		shape->getInput(4);
+		//shape->getInput(4);
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
