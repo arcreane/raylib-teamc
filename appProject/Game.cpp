@@ -83,7 +83,16 @@ Game::Game(int width, int height, std::string title)
 	shape = new Square();
 	time = 0;
 	bottom.resize(10);
+	for (size_t i = 0; i < bottom.size(); i++)
+	{
+		printf("1>>>>>>>>>> bottom = %d\n", bottom[i]);
+	}
+	
 	bottom.assign(10, 19);
+	for (size_t i = 0; i < bottom.size(); i++)
+	{
+		printf("2>>>>>>>>>> bottom = %d\n", bottom[i]);
+	}
 
 }
 
