@@ -8,12 +8,13 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    Game game{ screenWidth,screenHeight,"Rondo" };
- 
-    //while (!game.GameShouldClose())
-    //{
-    game.Tick();
-    //}
+    Game game{ screenWidth,screenHeight,"Rondo123" };
+
+    while (!game.GameShouldClose())
+    {
+        game.Tick();
+
+    }
     
     return 0;
 }

@@ -5,5 +5,6 @@ class Line :
 {
 public:
     Line();
+    void Turn();
 };
 

@@ -3,7 +3,11 @@
 #include "Square.h"
 #include <iostream>
 #include "Line.h"
-#include <windows.h>
+#include "LRight.h"
+#include "LLeft.h"
+#include "Shape.h"
+
+
 
 
 using namespace std;
@@ -13,16 +17,16 @@ void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos,
 	for (int i = 0; i < 4; i++){
 		bool mark = false;
 		for (int j = 0; j < 4; j++) {
-			std::cout << i << "lastpos x" << lastpos[i].getX() << "lastpos y" << lastpos[i].getY() << endl;
-			std::cout << pos[j].getX() << pos[j].getY() << endl;
-			cout << (lastpos[i] == pos[j]) << endl;
+			//std::cout << i << "lastpos x" << lastpos[i].getX() << "lastpos y" << lastpos[i].getY() << endl;
+			//std::cout <<"New position"<< pos[j].getX() << pos[j].getY() << endl;
+			//cout <<"Lastpos i == posj" << (lastpos[i] == pos[j]) << endl;
 			if (lastpos[i] == pos[j])
 			{
 
 				mark = true;
 			}
 		}
-		cout << "mark" << mark << endl;
+		//cout << "mark" << mark << endl;
 		if (mark == false)
 			if(lastpos[i].getX()>=0 && lastpos[i].getY() >= 0)
 				(*board).SetCell(lastpos[i], RED);
@@ -39,7 +43,12 @@ Game::Game(int width, int height, std::string title)
 		{
 			board.SetCell({ iX, iY }, RED);
 		}
-	shape = Line();
+	shape = new LLeft();
+	shape->Turn();
+	shape->Turn();
+	shape->Turn();
+	shape->Turn();
+
 	time = 0;
 
 
@@ -79,20 +88,23 @@ void Game::Draw()
 
 void Game::Update()
 {
-		if(shape.getCells()[3].getY()<=19){
+		if(shape->getCells()[3].getY()<=19){
 		for (int i = 0; i < 4; i++)
-			if (shape.getCells()[i].getY() >= 0)
-				board.SetCell(shape.getCells()[i], WHITE);
-		std::vector<Vec2<int>> lastpos = shape.getCells();
+			if (shape->getCells()[i].getY() >= 0)
+				board.SetCell(shape->getCells()[i], WHITE);
+		std::vector<Vec2<int>> lastpos = shape->getCells();
 
-		//shape.getInput(1);
+		shape->getInput(1);
+		shape->Turn();
+
+
 
 	/*	for (int c = 0; c < 4; c++) {
 			std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
 			std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;
 		}*/
-		if (shape.getCells()[3].getY() <=19)
-			animation(lastpos, shape.getCells(), &board);
+		if (shape->getCells()[3].getY() <=19)
+			animation(lastpos, shape->getCells(), &board);
 		//Compare the previous position and the moved position, 
 		//and set the different points in the previous position to red
 		}
