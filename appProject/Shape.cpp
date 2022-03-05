@@ -17,6 +17,11 @@ std::vector<Vec2<int>> Shape::getCells()
 	return cells;
 }
 
+void Shape::setCells(std::vector<Vec2<int>> c)
+{
+	cells = c;
+}
+
 
 
 void Shape::move(Vec2<int> dir)

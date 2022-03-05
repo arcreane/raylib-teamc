@@ -14,6 +14,7 @@ protected:
 public:
 	Shape();
 	std::vector<Vec2<int>> getCells();
+	void setCells(std::vector<Vec2<int>> c);
 	void getInput(int input);
 	int right();
 	int left();
