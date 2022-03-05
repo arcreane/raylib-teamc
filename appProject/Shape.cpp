@@ -10,7 +10,6 @@ Shape::Shape()
 	cells[2] = Vec2{ 0,0 };
 	cells[3] = Vec2{ 0,0 };
 
-
 }
 
 std::vector<Vec2<int>> Shape::getCells()
@@ -40,7 +39,7 @@ void Shape::getInput(int input)
 		move(Vec2{ 1,0 });
 	}
 	if (input == 4) {
-		retour();
+		Turn();
 	}
 	}
 

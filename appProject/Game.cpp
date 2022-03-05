@@ -2,11 +2,21 @@
 #include <assert.h>
 #include "Square.h"
 #include <iostream>
+#include "Line.h"
+#include "LRight.h"
+#include "LLeft.h"
+#include "Shape.h"
+
+
+
+
 using namespace std;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = Square();
+		shape = new LLeft();
+		shape->getInput(4);
+		//shape->getInput(4);
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
@@ -14,11 +24,11 @@ void Game::setShape()
 void Game::checkBottom()
 {   //If the current shape touches the bottom, stop moving and call setShape()
 	for (int i = 0; i < 4; i++)
-		if (bottom[shape.getCells()[i].getX()] <= shape.getCells()[i].getY()){
+		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()){
 			atBottom = true;
 			for (int j = 0; j < 4; j++) {
-				if (bottom[shape.getCells()[j].getX()] >= shape.getCells()[j].getY())
-					bottom[shape.getCells()[j].getX()] = (shape.getCells()[j].getY()-1);
+				if (bottom[shape->getCells()[j].getX()] >= shape->getCells()[j].getY())
+					bottom[shape->getCells()[j].getX()] = (shape->getCells()[j].getY()-1);
 			}
 			for (int k = 0; k < 10; k++)
 				std::cout << bottom[k] << ",";
@@ -30,15 +40,15 @@ void Game::checkBottom()
 void Game::Controll()
 { 
 	if (IsKeyDown(KEY_RIGHT)){
-		if(shape.right()<9)
-			shape.getInput(3);
+		if(shape->right()<9)
+			shape->getInput(3);
 	}
 	if (IsKeyDown(KEY_LEFT)){
-		if (shape.left() > 0)
-		shape.getInput(2);
+		if (shape->left() > 0)
+		shape->getInput(2);
 	}
-	if (IsKeyDown(KEY_UP)) shape.getInput(4);
-	if (IsKeyDown(KEY_DOWN)) shape.getInput(1);
+	if (IsKeyDown(KEY_UP)) shape->getInput(4);
+	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
 	
 }
 void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board)
@@ -69,7 +79,8 @@ Game::Game(int width, int height, std::string title)
 		{
 			board.SetCell({ iX, iY }, RED);
 		}
-	shape = Square();
+
+	shape = new Square();
 	time = 0;
 	bottom.resize(10);
 	bottom.assign(10, 19);
@@ -110,33 +121,29 @@ void Game::Draw()
 
 void Game::Update()
 {
-	
-		setShape();
-		if(!atBottom){
+	setShape();
+	if (!atBottom) {
 		for (int i = 0; i < 4; i++)
-			if (shape.getCells()[i].getY() >= 0)
-				board.SetCell(shape.getCells()[i], WHITE);
-		std::vector<Vec2<int>> lastpos = shape.getCells();
+			if (shape->getCells()[i].getY() >= 0)
+				board.SetCell(shape->getCells()[i], WHITE);
+		std::vector<Vec2<int>> lastpos = shape->getCells();
 		Controll();
 		checkBottom();
-	/*	for (int c = 0; c < 4; c++) {
-			std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
-			std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;
-		}*/
+		/*	for (int c = 0; c < 4; c++) {
+				std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
+				std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;
+			}*/
 		if (!atBottom)
-			animation(lastpos, shape.getCells(), &board);
+			animation(lastpos, shape->getCells(), &board);
 		else {
-			animation(lastpos, shape.getCells(), &board);
+			animation(lastpos, shape->getCells(), &board);
 			for (int j = 0; j < 4; j++)
-				if (shape.getCells()[j].getY() >= 0)
-					board.SetCell(shape.getCells()[j], WHITE);
+				if (shape->getCells()[j].getY() >= 0)
+					board.SetCell(shape->getCells()[j], WHITE);
 				else
-					std::cout<< "game over" << endl;
+					std::cout << "game over" << endl;
 		}
-		
-		//Compare the previous position and the moved position, 
-		//and set the different points in the previous position to red
-		}
+	}
 
 		
 	
