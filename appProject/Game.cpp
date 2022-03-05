@@ -22,7 +22,7 @@ void Game::setShape()
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
 }
 void Game::checkBottom()
-{   //If the current shape touches the bottom, stop moving and call setShape()
+{   //supprimer plus tard
 	for (int i = 0; i < 4; i++)
 		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()){
 			atBottom = true;
@@ -51,21 +51,44 @@ void Game::Controll()
 	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
 	
 }
-void Game::animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board)
+Shape* Game::getRandomShape()
 {
+	return nullptr;
+}
+void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
+{	//Vérifiez l'état de la carte avant de vous déplacer.
+	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
+	if (board->CheckCells(shape->getCells())==1) {
+		for (int i = 0; i < 4; i++)
+			if (shape->getCells()[i].getY() >= 0)
+				(*board).SetCell(shape->getCells()[i], WHITE);
+		for (int i = 0; i < 4; i++) {
+			bool mark = false;
+			for (int j = 0; j < 4; j++) {
+				if (lastpos[i] == shape->getCells()[j])
+				{
 
-	for (int i = 0; i < 4; i++){
-		bool mark = false;
-		for (int j = 0; j < 4; j++) {
-			if (lastpos[i] == pos[j])
-			{
-
-				mark = true;
+					mark = true;
+				}
 			}
+			if (mark == false)
+				if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
+					(*board).SetCell(lastpos[i], RED);
 		}
-		if (mark == false)
-			if(lastpos[i].getX()>=0 && lastpos[i].getY() >= 0)
-				(*board).SetCell(lastpos[i], RED);
+	}
+	else {
+		if (board->CheckCells(shape->getCells()) == 2)
+			//sinon revenez à la position d'origine
+			shape->setCells(lastpos);
+		else
+		{	//Si le bas touche une autre forme, placez-la sur le plateau
+			for (int j = 0; j < 4; j++)
+				if (shape->getCells()[j].getY() >= 0)
+					(*board).SetCell(shape->getCells()[j], WHITE);
+				else
+					std::cout << "game over" << endl;
+
+		}
 	}
 }
 Game::Game(int width, int height, std::string title)
@@ -81,6 +104,7 @@ Game::Game(int width, int height, std::string title)
 		}
 
 	shape = new Square();
+	score = 0;
 	time = 0;
 	bottom.resize(10);
 	bottom.assign(10, 19);
@@ -113,6 +137,7 @@ void Game::Draw()
 	
 
 	ClearBackground(BLACK);
+	//tache 2 Info-bulle score next shape level
 	board.Draw();
 
 
@@ -123,26 +148,22 @@ void Game::Update()
 {
 	setShape();
 	if (!atBottom) {
-		for (int i = 0; i < 4; i++)
-			if (shape->getCells()[i].getY() >= 0)
-				board.SetCell(shape->getCells()[i], WHITE);
 		std::vector<Vec2<int>> lastpos = shape->getCells();
+		//Timer
 		Controll();
+		// changer plus tard
 		checkBottom();
-		/*	for (int c = 0; c < 4; c++) {
-				std::cout << c << ":" << lastpos[c].getx() << lastpos[c].gety() << endl;
-				std::cout << c << ":" << shape.getcells()[c].getx() << shape.getcells()[c].gety() << endl;
-			}*/
 		if (!atBottom)
-			animation(lastpos, shape->getCells(), &board);
+			animation(lastpos, shape, &board);
 		else {
-			animation(lastpos, shape->getCells(), &board);
+			animation(lastpos, shape, &board);
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0)
 					board.SetCell(shape->getCells()[j], WHITE);
 				else
 					std::cout << "game over" << endl;
 		}
+		// changer plus tard
 	}
 
 		
