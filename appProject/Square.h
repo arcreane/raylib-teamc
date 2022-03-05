@@ -5,4 +5,5 @@ class Square :
 {
 public:
     Square();
+    void retour()  override;
 };
