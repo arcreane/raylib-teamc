@@ -6,7 +6,12 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
+#include "ollo.h"
+#include "TLeft.h"
+#include "TRight.h"
 
+#include <chrono>
+#include <thread>
 
 
 
@@ -14,7 +19,7 @@ using namespace std;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = new LLeft();
+		shape = new TLeft();
 		shape->getInput(4);
 		//shape->getInput(4);
 		atBottom = false;
@@ -133,7 +138,9 @@ void Game::Update()
 	setShape();
 	
 
-	shape->getInput(1);
+	//shape->getInput(1);
+	//this_thread::sleep_for(chrono::milliseconds(500));
+
 	if (!atBottom) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)

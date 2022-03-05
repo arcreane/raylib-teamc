@@ -45,6 +45,15 @@
     <ClCompile Include="LLeft.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ollo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TLeft.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TRight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -72,6 +81,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="LLeft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ollo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TLeft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TRight.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
