@@ -56,8 +56,8 @@ Shape* Game::getRandomShape()
 	return nullptr;
 }
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//Vérifiez l'état de la carte avant de vous déplacer.
-	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
+{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
+	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ï¿½ la position d'origine
 	if (board->CheckCells(shape->getCells())==1) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
@@ -78,7 +78,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 	}
 	else {
 		if (board->CheckCells(shape->getCells()) == 2)
-			//sinon revenez à la position d'origine
+			//sinon revenez ï¿½ la position d'origine
 			shape->setCells(lastpos);
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
