@@ -61,7 +61,7 @@ void Line::Turn()
 	}
  */
 
-	if (cells[1].getX()==cells[2].getX()) // getX==5
+	if (cells[1].getX()==cells[2].getX()) // cells[1].getX()==5 cells[2].getX()==6
 	{
 			cells[0].setX(cells[0].getX() - 1);
 			cells[0].setY(cells[0].getY() + 1);
@@ -75,7 +75,7 @@ void Line::Turn()
 
 		cells[0].setX(cells[0].getX() + 1);
 		cells[0].setY(cells[0].getY() - 1);
-		cells[2].setX(cells[2].getX() - 1); // 5
+		cells[2].setX(cells[2].getX() - 1); // cells[1].getX()==5 cells[2].getX()==5
 		cells[2].setY(cells[2].getY() + 1);
 		cells[3].setX(cells[3].getX() - 2);
 		cells[3].setY(cells[3].getY() + 2);
