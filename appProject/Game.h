@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Shape.h"
 #include <vector>
+#include "ctime"
 class Game
 {
 private:
@@ -16,6 +17,7 @@ private:
 	bool atBottom;
 	void checkBottom();
 	void Controll();
+	void Controll2();
 	int score; //tache4
 	Shape* getRandomShape();//tache3
 	int time;
