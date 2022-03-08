@@ -82,7 +82,6 @@ void ollo::Turn()
 	//}
 
 	i++;
-	printf("i == %d\n", i);
 	
 	//if (cells[0].getY() != cells[2].getY()) { // 3 != 2
 	//	/* 0 1          1
