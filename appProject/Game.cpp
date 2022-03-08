@@ -6,11 +6,17 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
+#include "TimerClock.hpp"
+#include <thread>
 
 
 
 
 using namespace std;
+using std::this_thread::sleep_for;
+using namespace std::chrono_literals;
+TimerClock tc;
+double now = 0;
 void Game::setShape()
 {
 	if (atBottom) {
@@ -39,6 +45,7 @@ void Game::checkBottom()
 }
 void Game::Controll()
 { 
+	sleep_for(100ms);
 	if (IsKeyDown(KEY_RIGHT)){
 		if(shape->right()<9)
 			shape->getInput(3);
@@ -49,6 +56,38 @@ void Game::Controll()
 	}
 	if (IsKeyDown(KEY_UP)) shape->getInput(4);
 	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
+
+
+	
+	//shape->getInput(1);
+
+	
+	//S_Timer timer1(1000);
+	//timer1.doClock();
+	
+}
+void Game::Controll2()
+{
+	int ct = tc.getTimerSecond();
+	
+	if (ct-now>0)
+	{
+		if (ct<=5)//level 1 in 5 sec
+		{
+			now++;//down once per 1 sec 
+		}
+		else if (ct<=10)// level up after 5 sec
+		{
+			now += 0.5;//down once per 0.5sec
+		}
+		else// level up after 10 sec
+		{
+			now += 0.1;//down once per 0.1sec
+		}
+		
+		shape->getInput(1);
+	}
+	
 	
 }
 Shape* Game::getRandomShape()
@@ -56,8 +95,8 @@ Shape* Game::getRandomShape()
 	return nullptr;
 }
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//Vérifiez l'état de la carte avant de vous déplacer.
-	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
+{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
+	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ï¿½ la position d'origine
 	if (board->CheckCells(shape->getCells())==1) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
@@ -78,7 +117,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 	}
 	else {
 		if (board->CheckCells(shape->getCells()) == 2)
-			//sinon revenez à la position d'origine
+			//sinon revenez ï¿½ la position d'origine
 			shape->setCells(lastpos);
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
@@ -147,9 +186,12 @@ void Game::Draw()
 void Game::Update()
 {
 	setShape();
+	
 	if (!atBottom) {
 		std::vector<Vec2<int>> lastpos = shape->getCells();
 		//Timer
+		Controll2();
+
 		Controll();
 		// changer plus tard
 		checkBottom();
