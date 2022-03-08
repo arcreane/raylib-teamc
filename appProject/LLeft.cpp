@@ -18,6 +18,7 @@ void LLeft::Turn()
 			/* 0        00
 			   000  ==> 0
 						0*/
+
 			cells[0].setX(cells[0].getX() - 2);
 			cells[0].setY(cells[0].getY() + 2);
 			cells[1].setX(cells[1].getX() - 1);
