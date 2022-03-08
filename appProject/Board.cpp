@@ -47,7 +47,7 @@ void Board::SetCell(Vec2<int> pos_in, Color c)
 
 int Board::CheckCells(std::vector<Vec2<int>> shape)
 {	//tache 1
-	//Éliminer une rangée et marquer
+	//Éliminer une rangée et marquer  
 	return 1;
 }
 
