@@ -68,6 +68,7 @@ void Board::Draw() const
 }
 
 int Board::getScore()
-{
+{   
+
 	return 0;
 }
