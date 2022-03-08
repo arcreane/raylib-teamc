@@ -4,12 +4,12 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
-#Raylib configuration file
-/appProject/appProject.vcxproj.*
-/appProject/appProject.vcxproj
+
 
 # User-specific files
 *.rsuser
+*.vcxproj.*
+*.vcxproj
 *.suo
 *.filters
 *.userosscache
