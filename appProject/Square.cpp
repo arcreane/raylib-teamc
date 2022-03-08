@@ -10,8 +10,7 @@ Square::Square()
 
 }
 
-void Square::Turn()
+void Square::retour()
 {
+	std::cout << "tourner" << std::endl;
 }
-
-
