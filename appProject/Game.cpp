@@ -6,9 +6,17 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
+
+#include "ollo.h"
+#include "TLeft.h"
+#include "TRight.h"
+
 #include "TimerClock.hpp"
 #include <thread>
 
+
+#include <chrono>
+#include <thread>
 
 
 
@@ -20,7 +28,7 @@ double now = 0;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = new LLeft();
+		shape = new TLeft();
 		shape->getInput(4);
 		//shape->getInput(4);
 		atBottom = false;
@@ -146,7 +154,16 @@ Game::Game(int width, int height, std::string title)
 	score = 0;
 	time = 0;
 	bottom.resize(10);
+	for (size_t i = 0; i < bottom.size(); i++)
+	{
+		printf("1>>>>>>>>>> bottom = %d\n", bottom[i]);
+	}
+	
 	bottom.assign(10, 19);
+	for (size_t i = 0; i < bottom.size(); i++)
+	{
+		printf("2>>>>>>>>>> bottom = %d\n", bottom[i]);
+	}
 
 }
 
@@ -187,6 +204,11 @@ void Game::Update()
 {
 	setShape();
 	
+
+
+	//shape->getInput(1);
+	//this_thread::sleep_for(chrono::milliseconds(500));
+
 	if (!atBottom) {
 		std::vector<Vec2<int>> lastpos = shape->getCells();
 		//Timer
