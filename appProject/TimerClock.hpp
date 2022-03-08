@@ -27,7 +27,7 @@ public:
 	}
 	double getTimerMicroSec() {
 		return duration_cast<microseconds>(high_resolution_clock::now() - _start).count();
-	}
+	} 
 };
 
 #endif // !_TimerClock_hpp_
