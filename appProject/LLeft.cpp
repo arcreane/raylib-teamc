@@ -11,8 +11,6 @@ LLeft::LLeft()
 
 void LLeft::Turn() 
 {
-	
-	
 	if (cells[2].getX() - cells[3].getX() == 0) {
 		if (cells[2].getY() - cells[3].getY()>0) {
 			/* 0        00
