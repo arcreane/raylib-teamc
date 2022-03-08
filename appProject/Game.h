@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Shape.h"
 #include <vector>
+#include "ctime"
 class Game
 {
 private:
@@ -16,8 +17,11 @@ private:
 	bool atBottom;
 	void checkBottom();
 	void Controll();
+	void Controll2();
+	int score; //tache4
+	Shape* getRandomShape();//tache3
 	int time;
-	void animation(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> pos, Board* board);
+	void animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board);
 public:
 	Game(int width, int height, std::string title);
 	Game(const Game& other) = delete;

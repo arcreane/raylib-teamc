@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <assert.h>
+#include "Shape.h"
 Board::Cell::Cell()
 	:bExists{false},
 	c{WHITE}
@@ -44,6 +45,12 @@ void Board::SetCell(Vec2<int> pos_in, Color c)
 	cells[pos_in.getY() * width + pos_in.getX()].setColor(c);
 }
 
+int Board::CheckCells(std::vector<Vec2<int>> shape)
+{	//tache 1
+	//Éliminer une rangée et marquer
+	return 1;
+}
+
 void Board::DrawCell(Vec2<int> pos_in) const
 {	
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
@@ -58,4 +65,9 @@ void Board::Draw() const
 	for (int iY = 0; iY < height; iY++)
 		for (int iX = 0; iX < width; iX++)
 			DrawCell(Vec2<int>{iX, iY});
+}
+
+int Board::getScore()
+{
+	return 0;
 }
