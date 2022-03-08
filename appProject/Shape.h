@@ -5,14 +5,17 @@
 
 class Shape
 { private:
-
+	
 protected:
 	std::vector<Vec2<int>> cells;
+
 	void move(Vec2<int> dir);
 	virtual void Turn() {};
+	int i=1;
 public:
 	Shape();
 	std::vector<Vec2<int>> getCells();
+	void setCells(std::vector<Vec2<int>> c);
 	void getInput(int input);
 	int right();
 	int left();
