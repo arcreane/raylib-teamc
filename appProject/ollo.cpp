@@ -2,7 +2,7 @@
 
 ollo::ollo()
 {
-	cells[0] = Vec2{ 1,1 }; // terf dlisr col 1
+	cells[0] = Vec2{ 1,2 }; // terf dlisr col 1
 	cells[1] = Vec2{ 2,1 }; // li lfo9  col 2
 	cells[2] = Vec2{ 2,2 }; // li f center col 2
 	cells[3] = Vec2{ 3,2 }; // li f limn col 3
@@ -15,9 +15,7 @@ void ollo::Turn()
 	printf("i == %d\n", i);
 
 	switch (i) {
-	case 1:
-		cells[0].setY(cells[0].getY() + 1);
-		break;
+	
 	case 2:
 		cells[0].setY(cells[0].getY() + 1);
 		cells[0].setX(cells[0].getX() + 1);

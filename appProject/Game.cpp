@@ -28,7 +28,7 @@ double now = 0;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = new Line();
+		shape = new ollo();
 		//shape->getInput(4);
 		//shape->getInput(4);
 		//shape->getInput(4); 
