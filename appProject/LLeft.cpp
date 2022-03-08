@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 LLeft::LLeft()
+
 {
 	cells[0] = Vec2{ 9,1 };
 	cells[1] = Vec2{ 9,2 };
