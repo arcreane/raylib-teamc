@@ -6,4 +6,7 @@ class Square :
 public:
     Square();
     void Turn()  override;
+
+
 };
+
