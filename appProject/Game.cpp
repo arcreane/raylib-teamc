@@ -28,8 +28,10 @@ double now = 0;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = new TLeft();
-		shape->getInput(4);
+		shape = new Line();
+		//shape->getInput(4);
+		//shape->getInput(4);
+		//shape->getInput(4); 
 		//shape->getInput(4);
 		atBottom = false;
 	}
