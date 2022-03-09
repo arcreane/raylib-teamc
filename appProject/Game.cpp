@@ -8,6 +8,22 @@
 #include "Shape.h"
 
 
+#include "ollo.h"
+#include "TLeft.h"
+#include "TRight.h"
+
+#include "TimerClock.hpp"
+#include <thread>
+
+
+#include <chrono>
+#include <thread>
+
+using namespace std;
+using std::this_thread::sleep_for;
+using namespace std::chrono_literals;
+TimerClock tc;
+double now = 0;
 
 
 using namespace std;
@@ -38,7 +54,8 @@ void Game::checkBottom()
 
 }
 void Game::Controll()
-{ 
+{
+	sleep_for(100ms);
 	if (IsKeyDown(KEY_RIGHT)){
 		if(shape->right()<9)
 			shape->getInput(3);
@@ -50,6 +67,28 @@ void Game::Controll()
 	if (IsKeyDown(KEY_UP)) shape->getInput(4);
 	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
 	
+}
+void Game::Controll2()
+{
+	int ct = tc.getTimerSecond();
+
+	if (ct - now > 0)
+	{
+		if (ct <= 5)//level 1 in 5 sec
+		{
+			now++;//down once per 1 sec 
+		}
+		else if (ct <= 10)// level up after 5 sec
+		{
+			now += 0.5;//down once per 0.5sec
+		}
+		else// level up after 10 sec
+		{
+			now += 0.1;//down once per 0.1sec
+		}
+
+		shape->getInput(1);
+	}
 }
 Shape* Game::getRandomShape()
 {
@@ -150,6 +189,7 @@ void Game::Update()
 	if (!atBottom) {
 		std::vector<Vec2<int>> lastpos = shape->getCells();
 		//Timer
+		Controll2();
 		Controll();
 		// changer plus tard
 		checkBottom();
