@@ -45,13 +45,13 @@
     <ClCompile Include="LLeft.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.cpp">
+    <ClCompile Include="ollo.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.cpp">
+    <ClCompile Include="TLeft.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.cpp">
+    <ClCompile Include="TRight.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,16 +83,16 @@
     <ClInclude Include="LLeft.h">
       <Filter>head</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.h">
+    <ClInclude Include="ollo.h">
       <Filter>head</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TimerClock.hpp">
+    <ClInclude Include="TimerClock.hpp">
       <Filter>head</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.h">
+    <ClInclude Include="TLeft.h">
       <Filter>head</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.h">
+    <ClInclude Include="TRight.h">
       <Filter>head</Filter>
     </ClInclude>
   </ItemGroup>
