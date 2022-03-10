@@ -177,6 +177,7 @@ void Game::Draw()
 
 	ClearBackground(BLACK);
 	//tache 2 Info-bulle score next shape level
+	//
 	board.Draw();
 
 
