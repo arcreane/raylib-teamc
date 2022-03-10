@@ -30,7 +30,7 @@ using namespace std;
 void Game::setShape()
 {
 	if (atBottom) {
-		shape = new LLeft();
+		shape = new ollo();
 		shape->getInput(4);
 		//shape->getInput(4);
 		atBottom = false;
