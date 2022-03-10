@@ -4,11 +4,14 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
+*.gitignore
 
 # User-specific files
 *.rsuser
+*.vcxproj.*
+*.vcxproj
 *.suo
-*.user
+*.filters
 *.userosscache
 *.sln.docstates
 
