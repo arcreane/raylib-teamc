@@ -157,9 +157,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.cpp" />
+    <ClCompile Include="ollo.cpp" />
+    <ClCompile Include="TLeft.cpp" />
+    <ClCompile Include="TRight.cpp" />
     <ClCompile Include="appProject.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -172,10 +172,10 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.h" />
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TimerClock.hpp" />
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.h" />
-    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.h" />
+    <ClInclude Include="ollo.h" />
+    <ClInclude Include="TimerClock.hpp" />
+    <ClInclude Include="TLeft.h" />
+    <ClInclude Include="TRight.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Line.h" />
