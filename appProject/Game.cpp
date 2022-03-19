@@ -6,7 +6,7 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
-
+#include<stdlib.h>
 
 #include "ollo.h"
 #include "TLeft.h"
@@ -28,11 +28,21 @@ double now = 0;
 
 using namespace std;
 void Game::setShape()
-{
+{	int number= rand() % 7  + 1;
 	if (atBottom) {
-		shape = new ollo();
-		shape->getInput(4);
-		//shape->getInput(4);
+		switch (number)
+		{
+		case 1:shape = new Square(); break;
+		case 2:shape = new Line(); break;
+		case 3:shape = new LRight(); break;
+		case 4:shape = new LLeft(); break;
+		case 5:shape = new ollo(); break;
+		case 6:shape = new TLeft(); break;
+		default:shape = new TRight(); break;
+			break;
+		}
+		
+		
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
@@ -94,6 +104,14 @@ Shape* Game::getRandomShape()
 {
 	return nullptr;
 }
+/*
+The main purpose of this function is to animate when our chessboard actually changes.
+But whether our chessboard can change needs to be judged by the CheckCells function.
+So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class, 
+which contains all the information of our chessboard.
+When you successfully implement this function, the CheckBottom function in this class can be deleted,
+because it is only used to judge a situation of the chessboard.
+*/
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 {	//Vérifiez l'état de la carte avant de vous déplacer.
 	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
