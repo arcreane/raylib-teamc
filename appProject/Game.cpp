@@ -6,7 +6,7 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
-
+#include<stdlib.h>
 
 #include "ollo.h"
 #include "TLeft.h"
@@ -19,6 +19,7 @@
 #include <chrono>
 #include <thread>
 
+#include "Settings.h"
 using namespace std;
 using std::this_thread::sleep_for;
 using namespace std::chrono_literals;
@@ -28,11 +29,21 @@ double now = 0;
 
 using namespace std;
 void Game::setShape()
-{
+{	int number= rand() % 7  + 1;
 	if (atBottom) {
-		shape = new ollo();
-		shape->getInput(4);
-		//shape->getInput(4);
+		switch (number)
+		{
+		case 1:shape = new Square(); break;
+		case 2:shape = new Line(); break;
+		case 3:shape = new LRight(); break;
+		case 4:shape = new LLeft(); break;
+		case 5:shape = new ollo(); break;
+		case 6:shape = new TLeft(); break;
+		default:shape = new TRight(); break;
+			break;
+		}
+		
+		
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
@@ -68,35 +79,22 @@ void Game::Controll()
 	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
 	
 }
-void Game::Controll2()
-{
-	int ct = tc.getTimerSecond();
 
-	if (ct - now > 0)
-	{
-		if (ct <= 5)//level 1 in 5 sec
-		{
-			now++;//down once per 1 sec 
-		}
-		else if (ct <= 10)// level up after 5 sec
-		{
-			now += 0.5;//down once per 0.5sec
-		}
-		else// level up after 10 sec
-		{
-			now += 0.1;//down once per 0.1sec
-		}
-
-		shape->getInput(1);
-	}
-}
 Shape* Game::getRandomShape()
 {
 	return nullptr;
 }
+/*
+The main purpose of this function is to animate when our chessboard actually changes.
+But whether our chessboard can change needs to be judged by the CheckCells function.
+So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class, 
+which contains all the information of our chessboard.
+When you successfully implement this function, the CheckBottom function in this class can be deleted,
+because it is only used to judge a situation of the chessboard.
+*/
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//Vérifiez l'état de la carte avant de vous déplacer.
-	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
+{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
+	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ?la position d'origine
 	if (board->CheckCells(shape->getCells())==1) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
@@ -117,7 +115,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 	}
 	else {
 		if (board->CheckCells(shape->getCells()) == 2)
-			//sinon revenez à la position d'origine
+			//sinon revenez ?la position d'origine
 			shape->setCells(lastpos);
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
@@ -184,6 +182,28 @@ void Game::Draw()
 	
 }
 
+void Game::Controll2()
+{
+	int ct = tc.getTimerSecond();
+
+	if (ct - now > 0)
+	{
+		if (ct <= 5)//level 1 in 5 sec
+		{
+			now++;//down once per 1 sec 
+		}
+		else if (ct <= 10)// level up after 5 sec
+		{
+			now += 0.5;//down once per 0.5sec
+		}
+		else// level up after 10 sec
+		{
+			now += 0.1;//down once per 0.1sec
+		}
+
+		shape->getInput(1);
+	}
+}
 void Game::Update()
 {
 	setShape();

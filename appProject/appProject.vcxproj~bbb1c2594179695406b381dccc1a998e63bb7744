@@ -123,17 +123,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;%(PreprocessorDefinitions);GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\workspace\CLionProjects\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\workspace\cpp\gameProject\raylib\src;%(AdditionalIncludeDirectories);C:\Users\CYTech Student\source\repos\raylibCongif\src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\workspace\CLionProjects\raylib\projects\VS2019\build\raylib\bin\x64\Release.DLL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>raylib.lib;winmm.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>H:\workspace\cpp\gameProject\raylib\projects\VS2019\build\raylib\bin\x64\Release.DLL;%(AdditionalLibraryDirectories);C:\Users\CYTech Student\source\repos\raylibCongif\projects\VS2019\build\raylib\bin\x64\Release.DLL</AdditionalLibraryDirectories>
+      <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies);raylib.lib;winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,11 +141,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>H:\workspace\CLionProjects\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessToFile>false</PreprocessToFile>
+      <AdditionalIncludeDirectories>;C:\Users\CYTech Student\source\repos\raylibCongif\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,14 +152,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
-      <AdditionalLibraryDirectories>H:\workspace\CLionProjects\raylib\projects\VS2019\build\raylib\bin\x64\Release.DLL</AdditionalLibraryDirectories>
-      <AdditionalDependencies>raylib.lib;winmm.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>;C:\Users\CYTech Student\source\repos\raylibCongif\projects\VS2019\build\raylib\bin\x64\Release.DLL</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);raylib.lib;winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ollo.cpp" />
-    <ClCompile Include="TLeft.cpp" />
-    <ClCompile Include="TRight.cpp" />
+    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.cpp" />
+    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.cpp" />
+    <ClCompile Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.cpp" />
     <ClCompile Include="appProject.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -174,11 +172,10 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ollo.h" />
-    <ClInclude Include="Settings.h" />
-    <ClInclude Include="TimerClock.hpp" />
-    <ClInclude Include="TLeft.h" />
-    <ClInclude Include="TRight.h" />
+    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\ollo.h" />
+    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TimerClock.hpp" />
+    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TLeft.h" />
+    <ClInclude Include="..\..\..\..\Downloads\raylib-teamc-master\raylib-teamc-master\appProject\TRight.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Line.h" />
