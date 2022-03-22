@@ -22,6 +22,7 @@ public:
 	void SetCell(Vec2<int> pos_in,Color c);
 	int CheckCells(std::vector<Vec2<int>> shape);
 	void DrawCell(Vec2<int> pos_in) const;
+	void DrawBorder() const;
 	void Draw() const;
 	int getScore();//tache 4
 private:
