@@ -24,6 +24,7 @@ public:
 	void DrawCell(Vec2<int> pos_in) const;
 	void DrawBorder() const;
 	void Draw() const;
+	void DrawNext(int type);
 	int getScore();//tache 4
 private:
 	std::vector<Cell> cells;

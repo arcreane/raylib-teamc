@@ -1,6 +1,7 @@
 #include "Board.h"
 #include <assert.h>
 #include "Shape.h"
+#include <vector>
 Board::Cell::Cell()
 	:bExists{false},
 	c{WHITE}
@@ -60,6 +61,7 @@ void Board::DrawCell(Vec2<int> pos_in) const
 	raycpp::DrawRectangle(topleft, Vec2{cellSize,cellSize}-padding, c);
 }
 
+
 void Board::DrawBorder() const
 {
 	raycpp::DrawRectangleLinesEx(ScreenPos - (cellSize / 2), Vec2{ width * cellSize,height * cellSize } + cellSize,
@@ -71,6 +73,97 @@ void Board::Draw() const
 	for (int iY = 0; iY < height; iY++)
 		for (int iX = 0; iX < width; iX++)
 			DrawCell(Vec2<int>{iX, iY});
+}
+
+void Board::DrawNext(int type)
+{
+	Vector2 p1, p2, p3,p4,size;
+	size = { 17,17 };
+	switch (type)
+	{
+	case 1: // Square
+		p1 = { 475, 150 };
+		p2 = { 475, 169 };
+		p3 = { 494, 150 };
+		p4 = { 494, 169 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+		break;
+	case 2: //Line
+		p1 = { 475, 150 };
+		p2 = { 494, 150 };
+		p3 = { 513, 150 };
+		p4 = { 532, 150 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+
+	
+		break;
+	case 3: // LRight
+		p1 = { 475, 150 };
+		p2 = { 475, 169 };
+		p3 = { 475, 188 };
+		p4 = { 494, 188 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+		break;
+	case 4: //LLeft
+		p1 = { 475, 150 };
+		p2 = { 475, 169 };
+		p3 = { 475, 188 };
+		p4 = { 456, 188 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+		break;
+	case 5: //ollo
+		p1 = { 475, 150 };
+		p2 = { 475, 169 };
+		p3 = { 456, 169 };
+		p4 = { 494, 169 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);	
+		break;
+	case 6: //Zleft
+		p1 = { 513, 150 };
+		p2 = { 494, 150 };
+		p3 = { 494, 169 };
+		p4 = { 475, 169 };
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+		break;
+	default://Zright
+		p1 = { 475, 150 };
+		p2 = { 494, 150 };
+		p3 = { 494, 169 };
+		p4 = { 513, 169 };
+
+		
+
+		DrawRectangleV(p1, size, WHITE);
+		DrawRectangleV(p2, size, WHITE);
+		DrawRectangleV(p3, size, WHITE);
+		DrawRectangleV(p4, size, WHITE);
+		break;
+	}
+	
 }
 
 int Board::getScore()

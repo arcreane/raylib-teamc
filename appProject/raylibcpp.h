@@ -5,4 +5,5 @@ namespace raycpp
 {
 	void DrawRectangle(Vec2<int> pos, Vec2<int> shape, Color c);
 	void DrawRectangleLinesEx(Vec2<int> pos, Vec2<int> WidthHeight,int lineThick, Color c);
+	//void DrawLineEx(Vector2  startPos, Vector2  endPos, float thick, Color c);
 }

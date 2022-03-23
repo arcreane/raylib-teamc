@@ -123,7 +123,7 @@ void ollo::Turn()
 	
 
 
-	/*if (cells[0].getY() != cells§[2].getY()) {
+	/*if (cells[0].getY() != cellsï¿½[2].getY()) {
 		printf("1>>>>>>>>>>>>>>>>>>>[0]%d\n", cells[0].getY());
 		printf("1>>>>>>>>>>>>>>>>>>>[2]%d\n", cells[2].getY());
 		cells[0].setY(cells[0].getY() + 2);
