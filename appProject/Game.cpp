@@ -25,11 +25,15 @@ using std::this_thread::sleep_for;
 using namespace std::chrono_literals;
 TimerClock tc;
 double now = 0;
+int level = 1;
+int flage = 1;
+int nextNum = rand() % 7 + 1;
 
 
 using namespace std;
 void Game::setShape()
-{	int number= rand() % 7  + 1;
+{	
+	int number = nextNum;
 	if (atBottom) {
 		switch (number)
 		{
@@ -37,17 +41,19 @@ void Game::setShape()
 		case 2:shape = new Line(); break;
 		case 3:shape = new LRight(); break;
 		case 4:shape = new LLeft(); break;
-		case 5:shape = new ollo(); break;
+		case 5:shape = new ollo(); break;//上
 		case 6:shape = new TLeft(); break;
-		default:shape = new TRight(); break;
+		default:shape = new TRight(); break;//Zright
 			break;
 		}
+		nextNum = rand() % 7 + 1;
 		
 		
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
 }
+
 void Game::checkBottom()
 {   //supprimer plus tard
 	for (int i = 0; i < 4; i++)
@@ -169,6 +175,8 @@ bool Game::GameShouldClose() const
 	return WindowShouldClose();
 }
 
+
+
 void Game::Draw()
 {
 	
@@ -177,6 +185,8 @@ void Game::Draw()
 	//tache 2 Info-bulle score next shape level
 	//
 	board.Draw();
+	board.DrawBorder();
+	board.DrawNext(nextNum);
 
 
 	
@@ -195,20 +205,25 @@ void Game::Controll2()
 		else if (ct <= 10)// level up after 5 sec
 		{
 			now += 0.5;//down once per 0.5sec
+			level = 2;
 		}
 		else// level up after 10 sec
 		{
 			now += 0.1;//down once per 0.1sec
+			level = 3;
 		}
 
 		shape->getInput(1);
 	}
 }
+
 void Game::Update()
 {
+	//initShape();
 	setShape();
 	if (!atBottom) {
 		std::vector<Vec2<int>> lastpos = shape->getCells();
+
 		//Timer
 		Controll2();
 		Controll();
@@ -219,8 +234,11 @@ void Game::Update()
 		else {
 			animation(lastpos, shape, &board);
 			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0)
+				if (shape->getCells()[j].getY() >= 0) { // When cell is down the end
 					board.SetCell(shape->getCells()[j], WHITE);
+					//board.DrawNextCell(shape->getCells()[j], WHITE);//TODO
+				}
+					
 				else
 					std::cout << "game over" << endl;
 		}

@@ -9,9 +9,18 @@ void raycpp::DrawRectangle(Vec2<int> pos, Vec2<int> shape, Color c)
 
 void raycpp::DrawRectangleLinesEx(Vec2<int> pos, Vec2<int> widthHeight, int lineThick, Color c)
 {
+	
 	assert(pos.getX() >= 0 && pos.getY() >= 0 &&
 		pos.getX() < GetScreenWidth() && pos.getY() < GetScreenHeight());
 	assert(lineThick > 0);
+	
 	DrawRectangleLinesEx({ (float)pos.getX(), (float)pos.getY() , (float)widthHeight.getX(), (float)widthHeight.getY() },
 							lineThick, c);
 }
+
+//void raycpp::DrawLineEx(Vector2  startPos, Vector2  endPos, float thick, Color c)
+//{	
+//	DrawLineEx({ 100, 50 }, { 100,150 }, thick, c);
+//}
+
+

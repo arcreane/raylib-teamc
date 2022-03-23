@@ -13,6 +13,7 @@ private:
 	Board board;
 	Shape* shape;
 	void setShape();
+
 	std::vector<int> bottom;
 	bool atBottom;
 	void checkBottom();
