@@ -166,6 +166,32 @@ void Board::DrawNext(int type)
 	
 }
 
+void Board::DrawScore(std::string score)
+{
+	int posX = 470;
+	int posY = 400;
+	int posY2 = 370;
+	int fontSize = 40;
+	int fontSize2 = 30;
+	const char* scores = score.data();
+	const char* text = "Scores: ";
+	DrawText(text,  posX,  posY2,fontSize2 , WHITE);
+	DrawText(scores,  posX,  posY,fontSize , WHITE);
+}
+
+void Board::DrawLevel(std::string level)
+{
+	int posX = 470;
+	int posY = 300;
+	int posY2 = 270;
+	int fontSize = 40;
+	int fontSize2 = 30;
+	const char* levels = level.data();
+	const char* text = "Level: ";
+	DrawText(text, posX, posY2, fontSize2, WHITE);
+	DrawText(levels, posX, posY, fontSize, WHITE);
+}
+
 int Board::getScore()
 {
 	return 0;

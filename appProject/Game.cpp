@@ -187,6 +187,8 @@ void Game::Draw()
 	board.Draw();
 	board.DrawBorder();
 	board.DrawNext(nextNum);
+	board.DrawLevel(to_string(level));
+	board.DrawScore(to_string(nextNum));
 
 
 	
