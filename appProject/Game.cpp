@@ -111,11 +111,14 @@ So, you will judge all the changes we can make in CheckCell, because CheckCell b
 which contains all the information of our chessboard.
 When you successfully implement this function, the CheckBottom function in this class can be deleted,
 because it is only used to judge a situation of the chessboard.
+
+All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 {	//Vérifiez l'état de la carte avant de vous déplacer.
 	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
 	if (board->CheckCells(shape->getCells())==1) {
+		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
 				(*board).SetCell(shape->getCells()[i], WHITE);
@@ -142,6 +145,10 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0)
 					(*board).SetCell(shape->getCells()[j], WHITE);
+					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
+					//or some other figure.
+					//So, after the placement is complete, we should check if there is a row that can be eliminated
+					//so we call (*board).getScore(); here
 				else
 					std::cout << "game over" << endl;
 
