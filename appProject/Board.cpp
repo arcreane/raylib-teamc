@@ -51,6 +51,7 @@ int Board::CheckCells(std::vector<Vec2<int>> shape)
 	return 1;
 }
 
+
 void Board::DrawCell(Vec2<int> pos_in) const
 {	
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
@@ -69,5 +70,9 @@ void Board::Draw() const
 
 int Board::getScore()
 {
+	//vérifier ce tableau =>std::vector<Cell> cells;
+	//S'il y a une rangée entièrement blanche, supprimez cette rangée.
+	// et renvoie un score correspondant
+	//
 	return 0;
 }
