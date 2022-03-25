@@ -157,6 +157,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ollo.cpp" />
+    <ClCompile Include="TLeft.cpp" />
+    <ClCompile Include="TRight.cpp" />
     <ClCompile Include="appProject.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -169,6 +172,10 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ollo.h" />
+    <ClInclude Include="TimerClock.hpp" />
+    <ClInclude Include="TLeft.h" />
+    <ClInclude Include="TRight.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Line.h" />
