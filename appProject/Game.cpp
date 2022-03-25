@@ -143,14 +143,21 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
 			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0)
+				if (shape->getCells()[j].getY() >= 0) {
 					(*board).SetCell(shape->getCells()[j], WHITE);
 					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
 					//or some other figure.
 					//So, after the placement is complete, we should check if there is a row that can be eliminated
-					//so we call (*board).getScore(); here
-				else
+				}
+				else {
 					std::cout << "game over" << endl;
+					(*board).getScore();
+				}
+					
+			
+			
+			
+
 
 		}
 	}
