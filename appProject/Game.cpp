@@ -6,15 +6,21 @@
 #include "LRight.h"
 #include "LLeft.h"
 #include "Shape.h"
+#include "squareC.h"
 #include<stdlib.h>
-
+#include "lineC.h"
+#include "lleftC.h"
+#include "tleftC.h"
+#include "lrightC.h"
+#include "trightC.h"
+#include "olloC.h"
 #include "ollo.h"
 #include "TLeft.h"
 #include "TRight.h"
-
 #include "TimerClock.hpp"
 #include <thread>
 
+#define N  999 
 
 #include <chrono>
 #include <thread>
@@ -29,19 +35,36 @@ double now = 0;
 using namespace std;
 void Game::setShape()
 {	int number= rand() % 7  + 1;
+	float prob = rand() % (N + 1) / (float)(N + 1);
+
 	if (atBottom) {
-		switch (number)
-		{
-		case 1:shape = new Square(); break;
-		case 2:shape = new Line(); break;
-		case 3:shape = new LRight(); break;
-		case 4:shape = new LLeft(); break;
-		case 5:shape = new ollo(); break;
-		case 6:shape = new TLeft(); break;
-		default:shape = new TRight(); break;
-			break;
+		if (prob > 0.6) {
+			switch (number)
+			{
+			case 1:shape = new Square(); break;
+			case 2:shape = new lineC(); break;
+			case 3:shape = new lrightC(); break;
+			case 4:shape = new lleftC(); break;
+			case 5:shape = new olloC(); break;
+			case 6:shape = new tleftC(); break;
+			default:shape = new trightC(); break;
+				break;
+			}
 		}
-		
+		else {
+			switch (number)
+			{
+			case 1:shape = new squareC(); break;
+			case 2:shape = new lineC(); break;
+			case 3:shape = new LRight(); break;
+			case 4:shape = new LLeft(); break;
+			case 5:shape = new ollo(); break;
+			case 6:shape = new TLeft(); break;
+			default:shape = new TRight(); break;
+				break;
+			}
+
+		}
 		
 		atBottom = false;
 	}
@@ -116,12 +139,13 @@ All the animation effects have been written, you just need to implement the judg
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 {	//Vérifiez l'état de la carte avant de vous déplacer.
+	
 	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
-	if (board->CheckCells(shape->getCells())==1) {
+	if (board->CheckCells(shape->getCells()) == 1) {
 		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
-				(*board).SetCell(shape->getCells()[i], WHITE);
+				(*board).SetCell(shape->getCells()[i], shape->getColors()[i]);
 		for (int i = 0; i < 4; i++) {
 			bool mark = false;
 			for (int j = 0; j < 4; j++) {
@@ -131,9 +155,11 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 					mark = true;
 				}
 			}
+			
 			if (mark == false)
 				if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
 					(*board).SetCell(lastpos[i], RED);
+					
 		}
 	}
 	else {
@@ -144,7 +170,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0)
-					(*board).SetCell(shape->getCells()[j], WHITE);
+					(*board).SetCell(shape->getCells()[j], shape->getColors()[j]);
 					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
 					//or some other figure.
 					//So, after the placement is complete, we should check if there is a row that can be eliminated
@@ -225,11 +251,12 @@ void Game::Update()
 			animation(lastpos, shape, &board);
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0)
-					board.SetCell(shape->getCells()[j], WHITE);
+					board.SetCell(shape->getCells()[j], shape->getColors()[j]);
 				else
 					std::cout << "game over" << endl;
 		}
 		// changer plus tard
+		
 	}
 
 		

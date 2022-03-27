@@ -157,8 +157,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="lineC.cpp" />
+    <ClCompile Include="lleftC.cpp" />
+    <ClCompile Include="lrightC.cpp" />
     <ClCompile Include="ollo.cpp" />
+    <ClCompile Include="olloC.cpp" />
+    <ClCompile Include="Shapebonus.cpp" />
+    <ClCompile Include="squareC.cpp" />
     <ClCompile Include="TLeft.cpp" />
+    <ClCompile Include="tleftC.cpp" />
     <ClCompile Include="TRight.cpp" />
     <ClCompile Include="appProject.cpp" />
     <ClCompile Include="Board.cpp" />
@@ -169,12 +176,20 @@
     <ClCompile Include="raylibcpp.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="trightC.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lineC.h" />
+    <ClInclude Include="lleftC.h" />
+    <ClInclude Include="lrightC.h" />
     <ClInclude Include="ollo.h" />
+    <ClInclude Include="olloC.h" />
+    <ClInclude Include="Shapebonus.h" />
+    <ClInclude Include="squareC.h" />
     <ClInclude Include="TimerClock.hpp" />
     <ClInclude Include="TLeft.h" />
+    <ClInclude Include="tleftC.h" />
     <ClInclude Include="TRight.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
@@ -184,6 +199,7 @@
     <ClInclude Include="raylibcpp.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="trightC.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,10 +1,12 @@
 #pragma once
 #include "Shape.h"
-class Line :
+class Shapebonus :
     public virtual Shape
 {
 public:
-    Line();
-    void Turn();
+    Shapebonus();
+private:
+    Color ranColor();
+
 };
 

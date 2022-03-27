@@ -1,6 +1,6 @@
 #pragma once
 #include "Shape.h"
-class ollo : public Shape
+class ollo : public virtual Shape
 {
 private:
 	

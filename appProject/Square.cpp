@@ -12,5 +12,9 @@ Square::Square()
 
 void Square::Turn()
 {
-	std::cout << "tourner" << std::endl;
+	Vec2 trans = cells[0];
+	cells[0] = cells[1];
+	cells[1] = cells[2];
+	cells[2] = cells[3];
+	cells[3] = trans;
 }

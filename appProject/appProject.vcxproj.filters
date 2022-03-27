@@ -54,6 +54,30 @@
     <ClCompile Include="TRight.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Shapebonus.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="squareC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="lineC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="lleftC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="lrightC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="olloC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="tleftC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="trightC.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -93,6 +117,30 @@
       <Filter>head</Filter>
     </ClInclude>
     <ClInclude Include="TRight.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapebonus.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="squareC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="lineC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="lleftC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="lrightC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="olloC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="tleftC.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="trightC.h">
       <Filter>head</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,16 +5,21 @@
 Shape::Shape()
 {	
 	cells.resize(4);
-	cells[0] = Vec2{ 0,0 };
-	cells[1] = Vec2{ 0,0 };
-	cells[2] = Vec2{ 0,0 };
-	cells[3] = Vec2{ 0,0 };
+	colors.resize(4);
+	for (int i = 0; i < 4; i++)
+		colors[i] = WHITE;
+		cells[i] = Vec2{ 0,0 };
 
 }
 
 std::vector<Vec2<int>> Shape::getCells()
 {
 	return cells;
+}
+
+std::vector<Color> Shape::getColors()
+{
+	return colors;
 }
 
 void Shape::setCells(std::vector<Vec2<int>> c)

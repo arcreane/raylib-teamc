@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 class LLeft
-	:public Shape
+	:public virtual Shape
 {
 public:
 	LLeft();

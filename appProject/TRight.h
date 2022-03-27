@@ -1,6 +1,6 @@
 #pragma once
 #include "Shape.h"
-class TRight : public Shape
+class TRight : public virtual Shape
 {
 public:
 	TRight();

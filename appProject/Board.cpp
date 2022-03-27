@@ -35,6 +35,7 @@ Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 	assert(width > 0 && height>0);
 	assert(size > 0);
 	cells.resize(width * height);
+	
 
 }
 
@@ -43,11 +44,27 @@ void Board::SetCell(Vec2<int> pos_in, Color c)
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width&& pos_in.getY() < height);
 	cells[pos_in.getY() * width + pos_in.getX()].setColor(c);
+	//printf("color.b=%d\n",cells[pos_in.getY() * width + pos_in.getX()].getColor().b);
+	
 }
 
 int Board::CheckCells(std::vector<Vec2<int>> shape)
 {	//tache 1
 	//Éliminer une rangée et marquer
+	for (int iY = 0; iY < 20; iY++)
+		for (int iX = 0; iX < 10; iX++)
+		{
+			for (int i = 0; i < 4; i++) {
+				int y = shape[i].getY();
+				int x = shape[i].getX();
+				printf("boardcolor=%d,", cells[iY * 10 + iX].getColor().b);
+				if (y > 0) {
+					printf("shapcolor =%d\n", cells[y * 10 + x].getColor().b);
+				}
+
+			}
+		}
+
 	return 1;
 }
 

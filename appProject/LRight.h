@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 class LRight
-	:public Shape
+	:public virtual Shape
 {
 public:
 	LRight();
