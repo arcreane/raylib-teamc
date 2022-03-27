@@ -48,24 +48,80 @@ void Board::SetCell(Vec2<int> pos_in, Color c)
 	
 }
 
-int Board::CheckCells(std::vector<Vec2<int>> shape)
+int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> shape)
 {	//tache 1
 	//Éliminer une rangée et marquer
-	for (int iY = 0; iY < 20; iY++)
-		for (int iX = 0; iX < 10; iX++)
-		{
-			for (int i = 0; i < 4; i++) {
-				int y = shape[i].getY();
-				int x = shape[i].getX();
-				printf("boardcolor=%d,", cells[iY * 10 + iX].getColor().b);
-				if (y > 0) {
-					printf("shapcolor =%d\n", cells[y * 10 + x].getColor().b);
+	int cas=1;	
+	printf("\n");
+	
+		for (int i = 0; i < 4; i++) {
+			int x = shape[i].getX();
+			int y = shape[i].getY();
+			bool mark = false;
+			for (int j = 0; j < 4; j++) {
+				if (lastpos[j] == shape[i])
+					mark = true;
+			}
+			if (mark == false)
+			{
+				if (y >= 0) {
+					Color c = cells[y * 10 + x].getColor();
+					if (c.r != RED.r && c.b != RED.b && c.g != RED.g)
+					{
+						cas = 2;
+					}
 				}
+			}
 
+
+
+		}
+	
+	if(cas==1)
+		for (int i = 0; i < 4; i++)
+		{
+			int y = shape[i].getY();
+			if (y == 19)
+			{
+				cas = 3;
+				printf("cas 3");
+				break;
 			}
 		}
+		if (cas==1&&cas != 3) {
+			for (int i = 0; i < 4; i++) {
+				lastpos[i] = shape[i];
+				shape[i] += {0, 1};
+			}
 
-	return 1;
+			for (int i = 0; i < 4; i++) {
+				int x = shape[i].getX();
+				int y = shape[i].getY();
+				bool mark = false;
+				for (int j = 0; j < 4; j++) {
+					if (lastpos[j] == shape[i])
+						mark = true;
+				}
+				printf("all x=%d,y=%d\n", x, y);
+				if (mark == false)
+				{
+					if (y >= 0) {
+						printf("differ x=%d,y=%d\n", x, y);
+						Color c = cells[y * 10 + x].getColor();
+						printf("r=%d,b=%d,g=%d\n", (int)c.r, (int)c.b, (int)c.g);
+						if (c.r != RED.r && c.b != RED.b && c.g != RED.g)
+						{
+							printf("cas 3 ee\n");
+							cas = 3;
+						}
+					}
+				}
+			}
+
+
+		}
+	
+	return cas;
 }
 
 

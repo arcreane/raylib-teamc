@@ -17,10 +17,11 @@ private:
 	bool atBottom;
 	void checkBottom();
 	void Controll();
-	void Controll2();
+	void Controll2(std::vector<Vec2<int>> lastpos);
 	int score; //tache4
 	Shape* getRandomShape();//tache3
 	int time;
+	bool isdown;
 	void animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board);
 public:
 	Game(int width, int height, std::string title);

@@ -38,7 +38,7 @@ void Game::setShape()
 	float prob = rand() % (N + 1) / (float)(N + 1);
 
 	if (atBottom) {
-		if (prob > 0.6) {
+		if (false) {
 			switch (number)
 			{
 			case 1:shape = new Square(); break;
@@ -54,8 +54,8 @@ void Game::setShape()
 		else {
 			switch (number)
 			{
-			case 1:shape = new squareC(); break;
-			case 2:shape = new lineC(); break;
+			case 1:shape = new Square(); break;
+			case 2:shape = new Line(); break;
 			case 3:shape = new LRight(); break;
 			case 4:shape = new LLeft(); break;
 			case 5:shape = new ollo(); break;
@@ -88,20 +88,30 @@ void Game::checkBottom()
 }
 void Game::Controll()
 {
+	
 	sleep_for(100ms);
+	std::vector<Vec2<int>> lastpos = shape->getCells();
+	//Controll2(lastpos);
 	if (IsKeyDown(KEY_RIGHT)){
-		if(shape->right()<9)
-			shape->getInput(3);
+	if(shape->right()<9)
+	{
+		shape->getInput(3); 	 animation(lastpos, shape, &board);
+	}
 	}
 	if (IsKeyDown(KEY_LEFT)){
 		if (shape->left() > 0)
-		shape->getInput(2);
+		{
+			shape->getInput(2);  animation(lastpos, shape, &board);
+		}
 	}
-	if (IsKeyDown(KEY_UP)) shape->getInput(4);
-	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
+	if (IsKeyDown(KEY_UP)) { shape->getInput(4);  animation(lastpos, shape, &board);
+	}
+	if (IsKeyDown(KEY_DOWN)) {
+		shape->getInput(1); animation(lastpos, shape, &board);
+	}
 	
 }
-void Game::Controll2()
+void Game::Controll2(std::vector<Vec2<int>> lastpos)
 {
 	int ct = tc.getTimerSecond();
 
@@ -113,14 +123,15 @@ void Game::Controll2()
 		}
 		else if (ct <= 10)// level up after 5 sec
 		{
-			now += 0.5;//down once per 0.5sec
+			now += 0;//down once per 0.5sec
 		}
 		else// level up after 10 sec
 		{
-			now += 0.1;//down once per 0.1sec
+			now += 0;//down once per 0.1sec
 		}
 
 		shape->getInput(1);
+		animation(lastpos, shape, &board);
 	}
 }
 Shape* Game::getRandomShape()
@@ -139,9 +150,9 @@ All the animation effects have been written, you just need to implement the judg
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 {	//Vérifiez l'état de la carte avant de vous déplacer.
-	
+	int juge = board->CheckCells(lastpos, shape->getCells());
 	//S'il est possible de se déplacer, déplacez-vous, sinon revenez à la position d'origine
-	if (board->CheckCells(shape->getCells()) == 1) {
+	if (juge == 1) {
 		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
@@ -163,14 +174,32 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 		}
 	}
 	else {
-		if (board->CheckCells(shape->getCells()) == 2)
+		if (juge == 2)
 			//sinon revenez à la position d'origine
 			shape->setCells(lastpos);
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
+			atBottom = true;
 			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0)
+				if (shape->getCells()[j].getY() >= 0){
+					for (int i = 0; i < 4; i++) {
+						bool mark = false;
+						for (int j = 0; j < 4; j++) {
+							if (lastpos[i] == shape->getCells()[j])
+							{
+
+								mark = true;
+							}
+						}
+
+						if (mark == false)
+							if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
+								(*board).SetCell(lastpos[i], RED);
+					}
+					printf("x=%d,y=%d\n", shape->getCells()[j].getX(), shape->getCells()[j].getY());
 					(*board).SetCell(shape->getCells()[j], shape->getColors()[j]);
+					
+				}
 					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
 					//or some other figure.
 					//So, after the placement is complete, we should check if there is a row that can be eliminated
@@ -237,29 +266,33 @@ void Game::Draw()
 
 void Game::Update()
 {
+
 	setShape();
+	std::vector<Vec2<int>> lastpos = shape->getCells();
 	if (!atBottom) {
-		std::vector<Vec2<int>> lastpos = shape->getCells();
+
 		//Timer
-		Controll2();
+		//Controll2();
 		Controll();
 		// changer plus tard
+		
+		/*
 		checkBottom();
-		if (!atBottom)
-			animation(lastpos, shape, &board);
-		else {
-			animation(lastpos, shape, &board);
+	
+		if (atBottom)
+
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0)
 					board.SetCell(shape->getCells()[j], shape->getColors()[j]);
 				else
 					std::cout << "game over" << endl;
 		}
+		*/
 		// changer plus tard
-		
-	}
 
-		
+
+
+	}
 	
 	
 	
