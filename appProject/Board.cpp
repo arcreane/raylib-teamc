@@ -1,6 +1,8 @@
 #include "Board.h"
 #include <assert.h>
 #include "Shape.h"
+#include <iostream>
+
 Board::Cell::Cell()
 	:bExists{false},
 	c{WHITE}
