@@ -35,6 +35,7 @@ Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 	assert(width > 0 && height>0);
 	assert(size > 0);
 	cells.resize(width * height);
+	cells.resize(cells.size() + 4);
 	
 
 }
@@ -53,7 +54,8 @@ int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> sha
 	//Éliminer une rangée et marquer
 	int cas=1;	
 	printf("\n");
-	
+	for (int i = 0; i < 4; i++)
+		printf("lastx=%d,lasty=%d\n", lastpos[i].getX(), lastpos[i].getY());
 		for (int i = 0; i < 4; i++) {
 			int x = shape[i].getX();
 			int y = shape[i].getY();
@@ -62,10 +64,13 @@ int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> sha
 				if (lastpos[j] == shape[i])
 					mark = true;
 			}
+			printf("all x=%d,y=%d\n", x, y);
 			if (mark == false)
 			{
 				if (y >= 0) {
+					printf("differ x=%d,y=%d\n", x, y);
 					Color c = cells[y * 10 + x].getColor();
+					printf("r=%d,b=%d,g=%d\n", (int)c.r, (int)c.b, (int)c.g);
 					if (c.r != RED.r && c.b != RED.b && c.g != RED.g)
 					{
 						cas = 2;
@@ -88,7 +93,7 @@ int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> sha
 				break;
 			}
 		}
-		if (cas==1&&cas != 3) {
+		/*if (cas == 1 && cas != 3) {
 			for (int i = 0; i < 4; i++) {
 				lastpos[i] = shape[i];
 				shape[i] += {0, 1};
@@ -99,9 +104,11 @@ int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> sha
 				int y = shape[i].getY();
 				bool mark = false;
 				for (int j = 0; j < 4; j++) {
+					//printf("last x=%d,y=%d\n", lastpos[j].getX(), lastpos[j].getY());
 					if (lastpos[j] == shape[i])
 						mark = true;
 				}
+
 				printf("all x=%d,y=%d\n", x, y);
 				if (mark == false)
 				{
@@ -119,7 +126,7 @@ int Board::CheckCells(std::vector<Vec2<int>> lastpos, std::vector<Vec2<int>> sha
 			}
 
 
-		}
+		}*/
 	
 	return cas;
 }

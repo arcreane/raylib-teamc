@@ -21,7 +21,7 @@ private:
 	int score; //tache4
 	Shape* getRandomShape();//tache3
 	int time;
-	bool isdown;
+	bool canmove;
 	void animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board);
 public:
 	Game(int width, int height, std::string title);

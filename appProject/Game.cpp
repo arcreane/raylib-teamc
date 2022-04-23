@@ -38,7 +38,7 @@ void Game::setShape()
 	float prob = rand() % (N + 1) / (float)(N + 1);
 
 	if (atBottom) {
-		if (false) {
+		if (prob<0.6) {
 			switch (number)
 			{
 			case 1:shape = new Square(); break;
@@ -88,26 +88,46 @@ void Game::checkBottom()
 }
 void Game::Controll()
 {
+	bool can = false;
+	if(canmove){
 	
-	sleep_for(100ms);
 	std::vector<Vec2<int>> lastpos = shape->getCells();
 	//Controll2(lastpos);
+	sleep_for(100ms);
 	if (IsKeyDown(KEY_RIGHT)){
 	if(shape->right()<9)
 	{
-		shape->getInput(3); 	 animation(lastpos, shape, &board);
+		shape->getInput(3); canmove = false;
+		for (int i = 0; i < 4; i++)
+			if (lastpos[i] != shape->getCells()[i])
+				can = true;
+		if(can)
+			animation(lastpos, shape, &board);
 	}
 	}
 	if (IsKeyDown(KEY_LEFT)){
 		if (shape->left() > 0)
 		{
-			shape->getInput(2);  animation(lastpos, shape, &board);
+			shape->getInput(2);  canmove = false; for (int i = 0; i < 4; i++)
+				if (lastpos[i] != shape->getCells()[i])
+					can = true;
+			if (can)
+				animation(lastpos, shape, &board);
 		}
 	}
-	if (IsKeyDown(KEY_UP)) { shape->getInput(4);  animation(lastpos, shape, &board);
+	if (IsKeyDown(KEY_UP)) { shape->getInput(4); canmove = false; for (int i = 0; i < 4; i++)
+		if (lastpos[i] != shape->getCells()[i])
+			can = true;
+	if (can)
+		animation(lastpos, shape, &board);
 	}
 	if (IsKeyDown(KEY_DOWN)) {
-		shape->getInput(1); animation(lastpos, shape, &board);
+		shape->getInput(1);  canmove = false; for (int i = 0; i < 4; i++)
+			if (lastpos[i] != shape->getCells()[i])
+				can = true;
+		if (can)
+			animation(lastpos, shape, &board);
+	}
 	}
 	
 }
@@ -179,7 +199,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 			shape->setCells(lastpos);
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
-			atBottom = true;
+			
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0){
 					for (int i = 0; i < 4; i++) {
@@ -196,7 +216,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 							if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
 								(*board).SetCell(lastpos[i], RED);
 					}
-					printf("x=%d,y=%d\n", shape->getCells()[j].getX(), shape->getCells()[j].getY());
+					//printf("x=%d,y=%d\n", shape->getCells()[j].getX(), shape->getCells()[j].getY());
 					(*board).SetCell(shape->getCells()[j], shape->getColors()[j]);
 					
 				}
@@ -206,9 +226,10 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 					//so we call (*board).getScore(); here
 				else
 					std::cout << "game over" << endl;
-
+			atBottom = true;
 		}
 	}
+	canmove = true;
 }
 Game::Game(int width, int height, std::string title)
 	:board({ 200,120 }, { 10, 20 }, 20, 2)
@@ -227,6 +248,7 @@ Game::Game(int width, int height, std::string title)
 	time = 0;
 	bottom.resize(10);
 	bottom.assign(10, 19);
+	canmove = true;
 
 }
 
