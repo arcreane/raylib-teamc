@@ -36,6 +36,7 @@ void Game::setShape()
 {
 	int number = nextNum;
 
+
 	if (atBottom) {
 		switch (number)
 		{
@@ -43,15 +44,12 @@ void Game::setShape()
 		case 2:shape = new Line(); break;
 		case 3:shape = new LRight(); break;
 		case 4:shape = new LLeft(); break;
-
-		case 5:shape = new ollo(); break;//ä¸
+		case 5:shape = new ollo(); break;//Ã¤Â¸Â
 		case 6:shape = new TLeft(); break;
 		default:shape = new TRight(); break;//Zright
 			break;
 		}
 		nextNum = rand() % 7 + 1;
-
-
 
 		atBottom = false;
 	}
@@ -97,7 +95,9 @@ Shape* Game::getRandomShape()
 /*
 The main purpose of this function is to animate when our chessboard actually changes.
 But whether our chessboard can change needs to be judged by the CheckCells function.
+
 So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class,
+
 which contains all the information of our chessboard.
 When you successfully implement this function, the CheckBottom function in this class can be deleted,
 because it is only used to judge a situation of the chessboard.
@@ -106,10 +106,11 @@ because it is only used to judge a situation of the chessboard.
 All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
-	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ?la position d'origine
+{	//VÃ¯Â¿Â½rifiez l'Ã¯Â¿Â½tat de la carte avant de vous dÃ¯Â¿Â½placer.
+	//S'il est possible de se dÃ¯Â¿Â½placer, dÃ¯Â¿Â½placez-vous, sinon revenez ?la position d'origine
 	if (board->CheckCells(shape->getCells()) == 1) {
-		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
+		//Toutes les fonctions de cette branche sont utilisÃ©es pour animer le mouvement des graphiques.
+
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
 				(*board).SetCell(shape->getCells()[i], WHITE);
@@ -139,6 +140,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
 					//or some other figure.
 					//So, after the placement is complete, we should check if there is a row that can be eliminated
+
 				}
 				else {
 					std::cout << "game over" << endl;
