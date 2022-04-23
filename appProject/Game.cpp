@@ -28,12 +28,14 @@ double now = 0;
 int level = 1;
 int flage = 1;
 int nextNum = rand() % 7 + 1;
-
+int scores = 0;
 
 using namespace std;
 void Game::setShape()
-{	
+
+{
 	int number = nextNum;
+
 	if (atBottom) {
 		switch (number)
 		{
@@ -41,14 +43,16 @@ void Game::setShape()
 		case 2:shape = new Line(); break;
 		case 3:shape = new LRight(); break;
 		case 4:shape = new LLeft(); break;
-		case 5:shape = new ollo(); break;//上
+
+		case 5:shape = new ollo(); break;//ä¸
 		case 6:shape = new TLeft(); break;
 		default:shape = new TRight(); break;//Zright
 			break;
 		}
 		nextNum = rand() % 7 + 1;
-		
-		
+
+
+
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
@@ -57,11 +61,11 @@ void Game::setShape()
 void Game::checkBottom()
 {   //supprimer plus tard
 	for (int i = 0; i < 4; i++)
-		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()){
+		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()) {
 			atBottom = true;
 			for (int j = 0; j < 4; j++) {
 				if (bottom[shape->getCells()[j].getX()] >= shape->getCells()[j].getY())
-					bottom[shape->getCells()[j].getX()] = (shape->getCells()[j].getY()-1);
+					bottom[shape->getCells()[j].getX()] = (shape->getCells()[j].getY() - 1);
 			}
 			for (int k = 0; k < 10; k++)
 				std::cout << bottom[k] << ",";
@@ -73,17 +77,17 @@ void Game::checkBottom()
 void Game::Controll()
 {
 	sleep_for(100ms);
-	if (IsKeyDown(KEY_RIGHT)){
-		if(shape->right()<9)
+	if (IsKeyDown(KEY_RIGHT)) {
+		if (shape->right() < 9)
 			shape->getInput(3);
 	}
-	if (IsKeyDown(KEY_LEFT)){
+	if (IsKeyDown(KEY_LEFT)) {
 		if (shape->left() > 0)
-		shape->getInput(2);
+			shape->getInput(2);
 	}
 	if (IsKeyDown(KEY_UP)) shape->getInput(4);
 	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
-	
+
 }
 
 Shape* Game::getRandomShape()
@@ -93,15 +97,19 @@ Shape* Game::getRandomShape()
 /*
 The main purpose of this function is to animate when our chessboard actually changes.
 But whether our chessboard can change needs to be judged by the CheckCells function.
-So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class, 
+So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class,
 which contains all the information of our chessboard.
 When you successfully implement this function, the CheckBottom function in this class can be deleted,
 because it is only used to judge a situation of the chessboard.
+
+
+All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//V�rifiez l'�tat de la carte avant de vous d�placer.
-	//S'il est possible de se d�placer, d�placez-vous, sinon revenez ?la position d'origine
-	if (board->CheckCells(shape->getCells())==1) {
+{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
+	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ?la position d'origine
+	if (board->CheckCells(shape->getCells()) == 1) {
+		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
 				(*board).SetCell(shape->getCells()[i], WHITE);
@@ -126,17 +134,28 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 		else
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
 			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0)
+				if (shape->getCells()[j].getY() >= 0) {
 					(*board).SetCell(shape->getCells()[j], WHITE);
-				else
+					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
+					//or some other figure.
+					//So, after the placement is complete, we should check if there is a row that can be eliminated
+				}
+				else {
 					std::cout << "game over" << endl;
+					(*board).getScore();
+				}
+
+
+
+
+
 
 		}
 	}
 }
 Game::Game(int width, int height, std::string title)
 	:board({ 200,120 }, { 10, 20 }, 20, 2)
-{	
+{
 	assert(!GetWindowHandle());
 	InitWindow(width, height, title.c_str());
 	SetTargetFPS(60);
@@ -155,17 +174,18 @@ Game::Game(int width, int height, std::string title)
 }
 
 Game::~Game() noexcept
-{	
-	
+{
+
 	assert(GetWindowHandle());
 	CloseWindow();
 }
 
 void Game::Tick()
-{	
+{
 	BeginDrawing();
 	Update();
 	Draw();
+	scores += 100;
 	EndDrawing();
 }
 
@@ -179,7 +199,7 @@ bool Game::GameShouldClose() const
 
 void Game::Draw()
 {
-	
+
 
 	ClearBackground(BLACK);
 	//tache 2 Info-bulle score next shape level
@@ -188,10 +208,10 @@ void Game::Draw()
 	board.DrawBorder();
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
-	board.DrawScore(to_string(nextNum));
+	board.DrawScore(to_string(scores));  //change value later
 
 
-	
+
 }
 
 void Game::Controll2()
@@ -200,16 +220,16 @@ void Game::Controll2()
 
 	if (ct - now > 0)
 	{
-		if (ct <= 5)//level 1 in 5 sec
+		if (scores <= 5000)//level 1 in 5000 scores
 		{
 			now++;//down once per 1 sec 
 		}
-		else if (ct <= 10)// level up after 5 sec
+		else if (scores <= 10000)// level up after 10000scores
 		{
 			now += 0.5;//down once per 0.5sec
 			level = 2;
 		}
-		else// level up after 10 sec
+		else// level up after 10000 scores
 		{
 			now += 0.1;//down once per 0.1sec
 			level = 3;
@@ -240,15 +260,15 @@ void Game::Update()
 					board.SetCell(shape->getCells()[j], WHITE);
 					//board.DrawNextCell(shape->getCells()[j], WHITE);//TODO
 				}
-					
+
 				else
 					std::cout << "game over" << endl;
 		}
 		// changer plus tard
 	}
 
-		
-	
-	
-	
+
+
+
+
 }
