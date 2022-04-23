@@ -32,8 +32,7 @@ int scores = 0;
 
 using namespace std;
 void Game::setShape()
-
-{
+{	
 	int number = nextNum;
 
 	if (atBottom) {
@@ -50,9 +49,8 @@ void Game::setShape()
 			break;
 		}
 		nextNum = rand() % 7 + 1;
-
-
-
+		
+		
 		atBottom = false;
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
@@ -106,10 +104,9 @@ because it is only used to judge a situation of the chessboard.
 All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//Vï¿½rifiez l'ï¿½tat de la carte avant de vous dï¿½placer.
-	//S'il est possible de se dï¿½placer, dï¿½placez-vous, sinon revenez ?la position d'origine
-	if (board->CheckCells(shape->getCells()) == 1) {
-		//Toutes les fonctions de cette branche sont utilisées pour animer le mouvement des graphiques.
+{	//V�rifiez l'�tat de la carte avant de vous d�placer.
+	//S'il est possible de se d�placer, d�placez-vous, sinon revenez ?la position d'origine
+	if (board->CheckCells(shape->getCells())==1) {
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
 				(*board).SetCell(shape->getCells()[i], WHITE);
@@ -142,13 +139,6 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 				}
 				else {
 					std::cout << "game over" << endl;
-					(*board).getScore();
-				}
-
-
-
-
-
 
 		}
 	}
@@ -208,7 +198,7 @@ void Game::Draw()
 	board.DrawBorder();
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
-	board.DrawScore(to_string(scores));  //change value later
+	board.DrawScore(to_string(nextNum));
 
 
 
