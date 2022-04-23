@@ -95,8 +95,5 @@
     <ClInclude Include="TRight.h">
       <Filter>head</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>head</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

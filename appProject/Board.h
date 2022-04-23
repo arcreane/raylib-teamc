@@ -2,6 +2,7 @@
 #include "raylibcpp.h"
 #include <vector>
 #include "Vec2.h"
+#include <string>
 class Board
 {
 private:
@@ -22,7 +23,11 @@ public:
 	void SetCell(Vec2<int> pos_in,Color c);
 	int CheckCells(std::vector<Vec2<int>> shape);
 	void DrawCell(Vec2<int> pos_in) const;
+	void DrawBorder() const;
 	void Draw() const;
+	void DrawNext(int type);
+	void DrawScore(std::string score);
+	void DrawLevel(std::string level);
 	int getScore();//tache 4
 private:
 	std::vector<Cell> cells;
