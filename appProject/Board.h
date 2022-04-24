@@ -32,6 +32,7 @@ public:
 	void DrawScore(std::string score);
 	void DrawLevel(std::string level);
 	int getScore();//tache 4
+	int RemoveLines();
 private:
 	std::vector<Cell> cells;
 	int width;

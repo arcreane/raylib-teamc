@@ -36,7 +36,36 @@ int Board::Cell::getVal()
 	return val;
 }
 
+int Board::RemoveLines()
+{
+	// This removes the full rows
+	int removed = 0;
+	for (int i = height - 1; i >= 0; i--)
+	{
+		bool entireLine = true;
+		for (int j = 0; j < width; j++)
+		{
+			if (cells[j * width + i].getVal() == 0)
+			{
+				entireLine = false;
+			}
+		}
+		if (entireLine)
+		{
+			removed++;
+			for (int k = i; k > 0; k--)
+			{
+				for (int j = 0; j < width; j++)
+				{
+					cells[j * width + k].setVal(cells[j * width + k - 1].getVal());
 
+				}
+			}
+			i++;
+		}
+	}
+	return removed;
+}
 
 Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 	:ScreenPos(pos),
@@ -52,7 +81,7 @@ Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 }
 
 void Board::SetCell(Vec2<int> pos_in, Color c, int v)
-{	
+{
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width&& pos_in.getY() < height);
 	cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].setColor(c);
