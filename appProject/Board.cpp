@@ -4,7 +4,7 @@
 #include <vector>
 Board::Cell::Cell()
 	:bExists{false},
-	c{WHITE}
+	c{WHITE}, val{1}
 
 {
 
@@ -26,6 +26,18 @@ Color Board::Cell::getColor() const
 	return c;
 }
 
+void Board::Cell::setVal(int v)
+{
+	val = v;
+}
+
+int Board::Cell::getVal()
+{
+	return val;
+}
+
+
+
 Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 	:ScreenPos(pos),
 	width(shape.getX()),
@@ -39,11 +51,12 @@ Board::Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in)
 
 }
 
-void Board::SetCell(Vec2<int> pos_in, Color c)
+void Board::SetCell(Vec2<int> pos_in, Color c, int v)
 {	
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width&& pos_in.getY() < height);
 	cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].setColor(c);
+	cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].setVal(v);
 }
 
 int Board::CheckCells(std::vector<Vec2<int>> shape)
