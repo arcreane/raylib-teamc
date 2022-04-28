@@ -2,8 +2,10 @@
 #include "Vec2.h"
 #include <raylib.h>
 #include <vector>
+#include "Element.h"
 
-class Shape
+class Shape :
+	Element
 { private:
 
 protected:
@@ -18,6 +20,7 @@ public:
 	void getInput(int input);
 	int right();
 	int left();
+	void destroy();
 
 };
 

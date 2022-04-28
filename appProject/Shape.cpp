@@ -75,5 +75,9 @@ int Shape::left()
 
 	return min;
 }
+
+void Shape::destroy()
+{
+}
 	
 
