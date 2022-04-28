@@ -46,8 +46,7 @@ void Board::SetCell(Vec2<int> pos_in, Color c, int v)
 {
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width && pos_in.getY() < height);
-	cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].setColor(c);
-	cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].setVal(v);
+	cells[pos_in.getY() * width + pos_in.getX()]=pos_in;
 }
 
 int Board::CheckCells(std::vector<Vec2<int>> shape)
@@ -66,12 +65,12 @@ void Board::DrawBorder() const
 		cellSize / 2, GREEN);
 }
 
-void Board::Draw() const
-{
-	for (int iY = 0; iY < height; iY++)
-		for (int iX = 0; iX < width; iX++)
-			DrawCell(Vec2<int>{iX, iY});
-}
+//void Board::Draw() const
+//{
+//	for (int iY = 0; iY < height; iY++)
+//		for (int iX = 0; iX < width; iX++)
+//			DrawCell(Vec2<int>{iX, iY});
+//}
 
 void Board::DrawNext(int type)
 {

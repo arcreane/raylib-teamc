@@ -6,7 +6,7 @@
 #include "Cell.h"
 #include "Graphics.h"
 class Board :
-	Graphics
+	public Graphics
 {
 public:
 	Board(Color color);
@@ -14,14 +14,12 @@ public:
 	int CheckCells(std::vector<Vec2<int>> shape);
 	
 	void DrawBorder() const;
-	void Draw() const;
+	//void Draw() const;
 	void DrawNext(int type);
 	void DrawScore(std::string score);
 	void DrawLevel(std::string level);
 	int getScore();//tache 4
 	//int RemoveLines();
-private:
-	
 
 };
 

@@ -6,8 +6,8 @@ class Graphics
 {
 public:
 	Color color;
-	std::vector<Cell> cells;
-	void Draw() {}
+	std::vector<Vec2<int>> cells;
+	void Draw();
 	void DrawCell(Vec2<int> pos_in) const;
 	Graphics();
 	Graphics(Color color);

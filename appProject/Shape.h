@@ -5,11 +5,11 @@
 #include "Element.h"
 
 class Shape :
-	Element
+	public Element
 { private:
 
 protected:
-	std::vector<Vec2<int>> cells;
+	
 	int i;
 	void move(Vec2<int> dir);
 	virtual void Turn() {};

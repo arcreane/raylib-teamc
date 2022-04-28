@@ -1,6 +1,7 @@
 #include "Shape.h"
 #include <stdlib.h>
 #include <iostream>
+#include"Vec2.h"
 
 Shape::Shape()
 {	
