@@ -187,6 +187,7 @@ void Game::Tick()
 	BeginDrawing();
 	Update();
 	Draw();
+	
 	scores += 100;
 	EndDrawing();
 }
@@ -228,12 +229,14 @@ void Game::Controll2()
 		}
 		else if (scores <= 10000)// level up after 10000scores
 		{
-			now += 0.5;//down once per 0.5sec
+		//	now += 0.5;//down once per 0.5sec
+			now += 1;//down once per 0.5sec
 			level = 2;
 		}
 		else// level up after 10000 scores
 		{
-			now += 0.1;//down once per 0.1sec
+	//		now += 0.1;//down once per 0.1sec
+			now += 1;//down once per 0.1sec
 			level = 3;
 		}
 

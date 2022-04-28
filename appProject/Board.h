@@ -3,27 +3,12 @@
 #include <vector>
 #include "Vec2.h"
 #include <string>
+#include "Cell.h"
 class Board
 {
-private:
-	class Cell
-	{
-	public:
-		Cell();
-		void setColor(Color c_in);
-		void Remove();
-		Color getColor() const;
-		void setVal(int v);
-		int getVal();
-	private:
-		bool bExists;
-		Color c;
-		int val;
-	};
-
 public:
-	Board(Vec2<int> pos, Vec2<int> shape, int size,int padding_in);
-	void SetCell(Vec2<int> pos_in,Color c, int v);
+	Board(Vec2<int> pos, Vec2<int> shape, int size, int padding_in);
+	void SetCell(Vec2<int> pos_in, Color c, int v);
 	int CheckCells(std::vector<Vec2<int>> shape);
 	void DrawCell(Vec2<int> pos_in) const;
 	void DrawBorder() const;
