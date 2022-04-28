@@ -57,6 +57,12 @@
     <ClCompile Include="Cell.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Bloc.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -102,6 +108,12 @@
       <Filter>head</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="Bloc.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
       <Filter>head</Filter>
     </ClInclude>
   </ItemGroup>

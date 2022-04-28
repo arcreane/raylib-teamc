@@ -159,7 +159,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bloc.cpp" />
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="ollo.cpp" />
     <ClCompile Include="TLeft.cpp" />
     <ClCompile Include="TRight.cpp" />
@@ -175,7 +177,9 @@
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bloc.h" />
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="ollo.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="TimerClock.hpp" />
