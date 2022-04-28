@@ -3,5 +3,7 @@
 class Bloc :
     public Graphics
 {
+public:
+    void Update();
 };
 
