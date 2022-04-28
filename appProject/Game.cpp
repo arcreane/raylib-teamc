@@ -74,17 +74,25 @@ void Game::checkBottom()
 }
 void Game::Controll()
 {
-	sleep_for(100ms);
+	
 	if (IsKeyDown(KEY_RIGHT)) {
 		if (shape->right() < 9)
 			shape->getInput(3);
+		sleep_for(100ms);
 	}
 	if (IsKeyDown(KEY_LEFT)) {
 		if (shape->left() > 0)
 			shape->getInput(2);
+		sleep_for(100ms);
 	}
-	if (IsKeyDown(KEY_UP)) shape->getInput(4);
-	if (IsKeyDown(KEY_DOWN)) shape->getInput(1);
+	if (IsKeyDown(KEY_UP)) {
+		shape->getInput(4);
+		sleep_for(125ms);
+	}
+	if (IsKeyDown(KEY_DOWN)) {
+		shape->getInput(1);
+		sleep_for(100ms);
+	}
 
 }
 
@@ -156,7 +164,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 	}
 }
 Game::Game(int width, int height, std::string title)
-	:board({ 200,120 }, { 10, 20 }, 20, 2)
+	:board(RED)
 {
 	assert(!GetWindowHandle());
 	InitWindow(width, height, title.c_str());
@@ -208,6 +216,7 @@ void Game::Draw()
 	//tache 2 Info-bulle score next shape level
 	//
 	board.Draw();
+	
 	board.DrawBorder();
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));

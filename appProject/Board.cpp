@@ -3,7 +3,7 @@
 #include "Shape.h"
 #include <vector>
 
-int Board::RemoveLines()
+/*int Board::RemoveLines()
 {
 	// This removes the full rows
 	int removed = 0;
@@ -32,17 +32,12 @@ int Board::RemoveLines()
 		}
 	}
 	return removed;
-}
+}*/
 
-Board::Board(Vec2<int> pos, Vec2<int> shape, int size, int padding_in)
-	:ScreenPos(pos),
-	width(shape.getX()),
-	height(shape.getY()),
-	cellSize(size),
-	padding(padding_in)
+Board::Board(Color color):
+	Graphics::Graphics(color)
 {
-	assert(width > 0 && height > 0);
-	assert(size > 0);
+	
 	cells.resize((double)width * (double)height);
 
 }
@@ -62,14 +57,7 @@ int Board::CheckCells(std::vector<Vec2<int>> shape)
 }
 
 
-void Board::DrawCell(Vec2<int> pos_in) const
-{
-	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
-	assert(pos_in.getX() < width && pos_in.getY() < height);
-	Color c = cells[(double)pos_in.getY() * (double)width + (double)pos_in.getX()].getColor();
-	Vec2<int> topleft = ScreenPos + padding + (pos_in * cellSize);
-	raycpp::DrawRectangle(topleft, Vec2{ cellSize,cellSize } - padding, c);
-}
+
 
 
 void Board::DrawBorder() const

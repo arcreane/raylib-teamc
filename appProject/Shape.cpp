@@ -4,6 +4,7 @@
 
 Shape::Shape()
 {	
+	i = 0;
 	cells.resize(4);
 	cells[0] = Vec2{ 0,0 };
 	cells[1] = Vec2{ 0,0 };
