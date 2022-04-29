@@ -25,7 +25,7 @@ void Bloc::Update(std::vector<Vec2<int>> pos_in)
 		flag = 0;
 		for (int x = 0; x < 10; x++)
 		{
-			if (std::find(cells.begin(), cells.end(), Vec2<int>{220, 140}) != cells.end())
+			if (std::find(cells.begin(), cells.end(), Vec2<int>{x, y}) != cells.end())
 			{
 				flag++;
 			}
@@ -40,13 +40,37 @@ void Bloc::Update(std::vector<Vec2<int>> pos_in)
 
 }
 
-int Bloc::checkCell(Vec2<int> cell)
+int Bloc::checkCell(std::vector<Vec2<int>> cell, Shape* shape)
 {
-	if (std::find(cells.begin(), cells.end(), cell) != cells.end()) {
-		return 1;
+	std::vector<Vec2<int>> currpos = shape->getCells();
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < cells.size(); j++)
+		{
+			if (std::find(cells.begin(), cells.end(), currpos[i]) != cells.end()) {
+				shape->setCells(cell);
+				return 1;
+			}
+		}
 	}
-
-	return 0;
+	//atButtom
+	std::vector<Vec2<int>> nextpos;
+	for (int i = 0; i < 4; i++)
+	{
+		nextpos.push_back(shape->getCells()[i] + Vec2<int>{0, 1});
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < cells.size(); j++)
+		{
+			if (std::find(cells.begin(), cells.end(), nextpos[i]) != cells.end()) {
+				//shape->setCells(currpos);
+				Update(shape->getCells());
+				return 0;
+			}
+		}
+	}
+	return 1;
 }
 
 void Bloc::DeleteRow(Vec2<int> pos)
@@ -64,16 +88,11 @@ void Bloc::DeleteLine(int posY)
 		std::remove(cells.begin(), cells.end(), Vec2<int>{i, posY});
 	}
 	//std::vector<int>::iterator it;
-	for (int y = posY; y >= 0; y--)
+	for (int i = 0; i < cells.size(); i++)
 	{
-		for (int x = 0; x < 10; x++)
-		{//TODO
-			/*if (find(cells.begin(), cells.end(), Vec2<int>{x, y}))
-			{
-
-			}*/
+		if (cells[i].getY() < posY) {
+			cells[i] += Vec2<int> {0, 1};
 		}
-
 	}
 
 

@@ -53,7 +53,7 @@ void Game::setShape()
 		}
 		nextNum = rand() % 7 + 1;
 
-		
+
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
 }
@@ -105,7 +105,20 @@ void Game::Controll()
 		//sleep_for(125ms);
 	}
 	if (IsKeyDown(KEY_DOWN)) {
+		/*int max = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			int y = shape->getCells()[i].getY();
+			if (max < y)
+			{
+				max = y;
+			}
+		}
+		int step = 19 - max;
+		for (int i = 0; i < step; i++)
+		{*/
 		shape->getInput(1);
+		//}
 		//sleep_for(100ms);
 	}
 
@@ -186,11 +199,11 @@ void Game::Controll2()
 
 	if (ct - now > 0)
 	{
-		if (score <= 5000)//level 1 in 5000 scores
+		if (score <= 1000)//level 1 in 5000 scores
 		{
 			now++;//down once per 1 sec 
 		}
-		else if (score <= 15000)// level up after 10000scores
+		else if (score <= 2000)// level up after 10000scores
 		{
 			//	now += 0.5;//down once per 0.5sec
 			now += 1;//down once per 0.5sec
@@ -210,6 +223,7 @@ void Game::Controll2()
 void Game::Update()
 {
 	std::vector<Vec2<int>> lastpos;
+	std::vector<Vec2<int>> oripos;
 	//initShape();
 	if (atBottom)
 	{
@@ -217,14 +231,17 @@ void Game::Update()
 	}
 	setShape();
 	if (!atBottom) {
+		oripos = shape->getCells();
 		//Timer
 		Controll2();
 		Controll();
 		// changer plus tard
+		if (bloc.checkCell(oripos, shape)==0) {
+			atBottom = true;
+		}//(oripos, currpos)
 		checkBottom();
 	}
 	else {
-		
 		bloc.Update(lastpos);
 		atBottom = false;
 		for (int i = 0; i < 4; i++)
