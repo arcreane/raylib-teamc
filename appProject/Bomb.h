@@ -5,6 +5,8 @@ class Bomb :
     public Graphics
 {
 public:
+    int rowScore;
+    Bomb();
     void move(Vec2<int> dir);
     void explose();
 };

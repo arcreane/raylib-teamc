@@ -1,9 +1,12 @@
 #pragma once
 #include "Graphics.h"
 class Bloc :
-    public Graphics
+	public Graphics
 {
 public:
-    void Update(std::vector<Vec2<int>> cells);
+	int lineScore;
+	Bloc();
+	void Update(std::vector<Vec2<int>> cells);
+	void DeleteLine(int posY);
 };
 

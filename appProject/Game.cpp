@@ -29,7 +29,7 @@ double now = 0;
 int level = 1;
 int flage = 1;
 int nextNum = rand() % 7 + 1;
-int scores = 0;
+
 
 using namespace std;
 void Game::setShape()
@@ -174,7 +174,6 @@ Game::Game(int width, int height, std::string title)
 		}
 
 	shape = new Square();
-	
 	score = 0;
 	time = 0;
 	bottom.resize(10);
@@ -194,8 +193,7 @@ void Game::Tick()
 	BeginDrawing();
 	Update();
 	Draw();
-	
-	//scores += 100;
+	score = 100 * bloc.lineScore;
 	EndDrawing();
 }
 
@@ -220,7 +218,7 @@ void Game::Draw()
 	board.DrawBorder();
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
-	board.DrawScore(to_string(scores));  //change value later
+	board.DrawScore(to_string(score));  //change value later
 
 
 
@@ -232,11 +230,11 @@ void Game::Controll2()
 
 	if (ct - now > 0)
 	{
-		if (scores <= 5000)//level 1 in 5000 scores
+		if (score <= 5000)//level 1 in 5000 scores
 		{
 			now++;//down once per 1 sec 
 		}
-		else if (scores <= 10000)// level up after 10000scores
+		else if (score <= 15000)// level up after 10000scores
 		{
 		//	now += 0.5;//down once per 0.5sec
 			now += 1;//down once per 0.5sec

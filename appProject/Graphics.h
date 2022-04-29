@@ -20,6 +20,7 @@ protected:
 	int height;
 	int cellSize;
 	int padding;
+	
 	Vec2<int> ScreenPos;
 };
 
