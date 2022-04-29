@@ -190,20 +190,20 @@ void Game::Controll2()
 
 	if (ct - now > 0)
 	{
-		if (score <= 300)//level 1 in 5000 scores
+		if (score < 300)//level 1 in 5000 scores
 		{
 			now++;//down once per 1 sec 
 		}
-		else if (score <= 600)// level up after 10000scores
+		else if (score < 600)// level up after 10000scores
 		{
 			//	now += 0.5;//down once per 0.5sec
-			now += 1;//down once per 0.5sec
+			now += 0.5;//down once per 0.5sec
 			level = 2;
 		}
 		else// level up after 10000 scores
 		{
 			//		now += 0.1;//down once per 0.1sec
-			now += 1;//down once per 0.1sec
+			now += 0.1;//down once per 0.1sec
 			level = 3;
 		}
 
