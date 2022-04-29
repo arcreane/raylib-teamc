@@ -7,9 +7,9 @@ class Bloc :
 public:
 	int lineScore;
 	Bloc();
-	void Update(std::vector<Vec2<int>> cells);
+	void Update(std::vector<Vec2<int>> cells,int size);
 	void DeleteLine(int posY);
-	int checkCell(std::vector<Vec2<int>> cell,Shape* shape);
+	int checkCell(std::vector<Vec2<int>> cell,Element* shape,int size);
 	void DeleteRow(Vec2<int> pos);
 	
 };

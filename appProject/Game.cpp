@@ -5,7 +5,8 @@
 #include "Line.h"
 #include "LRight.h"
 #include "LLeft.h"
-#include "Shape.h"
+#include "Element.h"
+#include "Bomb.h"
 #include<stdlib.h>
 
 
@@ -30,6 +31,7 @@ double now = 0;
 int level = 1;
 int flage = 1;
 int nextNum = rand() % 7 + 1;
+#define P 0.95
 
 
 using namespace std;
@@ -37,19 +39,25 @@ void Game::setShape()
 
 {
 	int number = nextNum;
-
-
+	double prob = rand() % 1000 / (double)1000;
 	if (atBottom) {
-		switch (number)
+		if (prob < P)
 		{
-		case 1:shape = new Square(); break;
-		case 2:shape = new Line(); break;
-		case 3:shape = new LRight(); break;
-		case 4:shape = new LLeft(); break;
-		case 5:shape = new ollo(); break;//Ã¤Â¸Â
-		case 6:shape = new TLeft(); break;
-		default:shape = new TRight(); break;//Zright
-			break;
+			switch (number)
+			{
+			case 1:shape = new Square(); break;
+			case 2:shape = new Line(); break;
+			case 3:shape = new LRight(); break;
+			case 4:shape = new LLeft(); break;
+			case 5:shape = new ollo(); break;//Ã¤Â¸Â
+			case 6:shape = new TLeft(); break;
+			default:shape = new TRight(); break;//Zright
+				break;
+			}
+		}
+		else
+		{
+			shape = new Bomb();
 		}
 		nextNum = rand() % 7 + 1;
 
@@ -60,33 +68,13 @@ void Game::setShape()
 
 void Game::checkBottom()
 {   //supprimer plus tard
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < shape->getCells().size(); i++)
 		if (shape->getCells()[i].getY() == 19) {
 			atBottom = true;
-			for (int k = 0; k < 10; k++)
-			{
-				std::cout << bottom[k] << ",";
-			}
-			std::cout << endl;
 			break;
 		}
 }
-/*void Game::checkBottom()
-{   //supprimer plus tard
-	for (int i = 0; i < 4; i++)
-		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()) {
-			atBottom = true;
-			for (int j = 0; j < 4; j++) {
-				if (bottom[shape->getCells()[j].getX()] >= shape->getCells()[j].getY())
-					bottom[shape->getCells()[j].getX()] = (shape->getCells()[j].getY() - 1);
-			}
-			for (int k = 0; k < 10; k++)
-				std::cout << bottom[k] << ",";
-			std::cout << endl;
-			break;
-		}
 
-}*/
 void Game::Controll()
 {
 
@@ -124,10 +112,10 @@ void Game::Controll()
 
 }
 
-Shape* Game::getRandomShape()
-{
-	return nullptr;
-}
+//Element* Game::getRandomShape()
+//{
+//	return nullptr;
+//}
 
 Game::Game(int width, int height, std::string title)
 	:board(RED), bloc()
@@ -142,6 +130,8 @@ Game::Game(int width, int height, std::string title)
 		}
 
 	shape = new Square();
+	//bomb = Bomb();
+	bomb.getInput(4);
 	score = 0;
 	time = 0;
 	atBottom = false;
@@ -183,6 +173,7 @@ void Game::Draw()
 	//
 	board.Draw();
 	shape->Draw();
+	//bomb.Draw();
 	bloc.Draw();
 	board.DrawBorder();
 	board.DrawNext(nextNum);
@@ -199,11 +190,11 @@ void Game::Controll2()
 
 	if (ct - now > 0)
 	{
-		if (score <= 1000)//level 1 in 5000 scores
+		if (score <= 300)//level 1 in 5000 scores
 		{
 			now++;//down once per 1 sec 
 		}
-		else if (score <= 2000)// level up after 10000scores
+		else if (score <= 600)// level up after 10000scores
 		{
 			//	now += 0.5;//down once per 0.5sec
 			now += 1;//down once per 0.5sec
@@ -222,6 +213,7 @@ void Game::Controll2()
 
 void Game::Update()
 {
+	Element shape2{ *shape };
 	std::vector<Vec2<int>> lastpos;
 	std::vector<Vec2<int>> oripos;
 	//initShape();
@@ -236,23 +228,23 @@ void Game::Update()
 		Controll2();
 		Controll();
 		// changer plus tard
-		if (bloc.checkCell(oripos, shape)==0) {
+		if (bloc.checkCell(oripos, shape, shape->getCells().size()) == 0) {
 			atBottom = true;
 		}//(oripos, currpos)
 		checkBottom();
 	}
 	else {
-		bloc.Update(lastpos);
+		bloc.Update(lastpos, shape2.getCells().size());
 		atBottom = false;
-		for (int i = 0; i < 4; i++)
+		for (int j = 0; j < bloc.cells.size(); j++)
 		{
-			std::cout << "   X =  " << lastpos[i].getX() << "  Y =  " << lastpos[i].getY();
-		}
-		for (int j = 0; j < 4; j++)
-		{
-			if (shape->getCells()[j].getY() < 0)
+			if (bloc.cells[j].getY() <= 2)
 			{
 				std::cout << "game over" << endl;
+
+				char name[20];
+				std::cout << "Enter your name: ";
+				std::cin >> name;
 			}
 		}
 	}

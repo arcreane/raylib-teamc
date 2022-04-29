@@ -3,10 +3,10 @@
 TRight::TRight()
 {
 
-	cells[0] = Vec2{ 1,1 };
-	cells[1] = Vec2{ 2,1 };
-	cells[2] = Vec2{ 2,2 };
-	cells[3] = Vec2{ 3,2 };
+	cells[0] = Vec2{ 4,1 };
+	cells[1] = Vec2{ 5,1 };
+	cells[2] = Vec2{ 5,2 };
+	cells[3] = Vec2{ 6,2 };
 
 }
 

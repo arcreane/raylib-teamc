@@ -5,10 +5,10 @@ using namespace std;
 Line::Line()
 {
 
-	cells[0] = Vec2{ 4,1 };
-	cells[1] = Vec2{ 5,1 };
-	cells[2] = Vec2{ 6,1 };
-	cells[3] = Vec2{ 7,1 };
+	cells[0] = Vec2{ 4,0 };
+	cells[1] = Vec2{ 4,1 };
+	cells[2] = Vec2{ 4,2 };
+	cells[3] = Vec2{ 4,3 };
 
 
 }

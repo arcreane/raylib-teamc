@@ -1,6 +1,7 @@
 #include "Bloc.h"
 #include <cassert>
 #include <vector>
+#include<iostream>
 #include <algorithm>
 
 
@@ -12,11 +13,14 @@ Bloc::Bloc() :
 	lineScore = 0;
 }
 
-void Bloc::Update(std::vector<Vec2<int>> pos_in)
+void Bloc::Update(std::vector<Vec2<int>> pos_in, int size)
 {
+	std::cout << "Enter Update" << std::endl;
 	int flag = 0;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < size; i++)
 	{
+		std::cout << " X:  " << pos_in[i].getX() << "Y:  " << pos_in[i].getY();
+		std::cout << std::endl;
 		cells.push_back(pos_in[i]);
 	}
 	//check delete
@@ -37,13 +41,17 @@ void Bloc::Update(std::vector<Vec2<int>> pos_in)
 		}
 
 	}
+	if (pos_in.size() == 1)
+	{
+		DeleteRow(pos_in[0]);
+	}
 
 }
 
-int Bloc::checkCell(std::vector<Vec2<int>> cell, Shape* shape)
+int Bloc::checkCell(std::vector<Vec2<int>> cell, Element* shape, int size)
 {
 	std::vector<Vec2<int>> currpos = shape->getCells();
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < cells.size(); j++)
 		{
@@ -55,17 +63,17 @@ int Bloc::checkCell(std::vector<Vec2<int>> cell, Shape* shape)
 	}
 	//atButtom
 	std::vector<Vec2<int>> nextpos;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < size; i++)
 	{
 		nextpos.push_back(shape->getCells()[i] + Vec2<int>{0, 1});
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < cells.size(); j++)
 		{
 			if (std::find(cells.begin(), cells.end(), nextpos[i]) != cells.end()) {
 				//shape->setCells(currpos);
-				Update(shape->getCells());
+				Update(shape->getCells(), shape->getCells().size());
 				return 0;
 			}
 		}
@@ -75,6 +83,8 @@ int Bloc::checkCell(std::vector<Vec2<int>> cell, Shape* shape)
 
 void Bloc::DeleteRow(Vec2<int> pos)
 {
+	std::cout << "Enter DeleteRow**********************" << std::endl;
+	std::cout << " DX:  " << pos.getX() << "DY:  " << pos.getY() << std::endl;
 	for (int i = pos.getY(); i < 20; i++)
 	{
 		std::remove(cells.begin(), cells.end(), Vec2<int>{ pos.getX(), i});

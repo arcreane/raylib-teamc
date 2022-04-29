@@ -3,10 +3,10 @@
 using namespace std;
 LRight::LRight()
 {
-	cells[0] = Vec2{ 8,0 };
-	cells[1] = Vec2{ 8,1 };
-	cells[2] = Vec2{ 8,2 };
-	cells[3] = Vec2{ 9,2 };
+	cells[0] = Vec2{ 5,0 };
+	cells[1] = Vec2{ 5,1 };
+	cells[2] = Vec2{ 5,2 };
+	cells[3] = Vec2{ 6,2 };
 }
 
 void LRight::Turn()

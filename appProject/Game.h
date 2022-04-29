@@ -6,13 +6,15 @@
 #include <vector>
 #include "ctime"
 #include "Bloc.h"
+#include "Bomb.h"
 class Game
 {
 private:
 	void Draw();
 	void Update();
 	Board board;
-	Shape* shape;
+	Element* shape;
+	Bomb bomb;
 	Bloc bloc;
 	void setShape();
 	int score;
@@ -22,7 +24,7 @@ private:
 	void Controll();
 	void Controll2();
 	//int score; //tache4
-	Shape* getRandomShape();//tache3
+	//Element* getRandomShape();//tache3
 	int time;
 	void animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board);
 public:

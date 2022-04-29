@@ -1,8 +1,8 @@
 #pragma once
-#include "Graphics.h"
+#include "Element.h"
 #include "Vec2.h"
 class Bomb :
-    public Graphics
+    public Element
 {
 public:
     Bomb();

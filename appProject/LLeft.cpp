@@ -3,10 +3,10 @@
 using namespace std;
 LLeft::LLeft()
 {
-	cells[0] = Vec2{ 9,1 };
-	cells[1] = Vec2{ 9,2 };
-	cells[2] = Vec2{ 9,3 };
-	cells[3] = Vec2{ 8,3 };
+	cells[0] = Vec2{ 5,1 };
+	cells[1] = Vec2{ 5,2 };
+	cells[2] = Vec2{ 5,3 };
+	cells[3] = Vec2{ 4,3 };
 }
 
 void LLeft::Turn() 
