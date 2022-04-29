@@ -5,7 +5,7 @@ class Element :
     public Graphics
 {
 public:
-    Element() {};
+    Element():Graphics() {};
     void move(Vec2<int> dir);
 };
 

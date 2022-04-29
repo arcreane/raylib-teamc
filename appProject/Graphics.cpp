@@ -5,9 +5,9 @@
 void Graphics::DrawCell(Vec2<int> pos_in) const
 {
 
-	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
+	/*assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 
-	assert(pos_in.getX() < 10 && pos_in.getY() < 20);
+	assert(pos_in.getX() < 10 && pos_in.getY() < 20);*/
 
 	Vec2<int> topleft = ScreenPos + padding + (pos_in * cellSize);
 	raycpp::DrawRectangle(topleft, Vec2{ cellSize,cellSize } - padding, color);

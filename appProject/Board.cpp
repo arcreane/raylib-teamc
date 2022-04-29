@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "Shape.h"
 #include <vector>
+#include "Vec2.h"
 
 /*int Board::RemoveLines()
 {
@@ -37,9 +38,7 @@
 Board::Board(Color color):
 	Graphics::Graphics(color)
 {
-	
 	cells.resize((double)width * (double)height);
-
 }
 
 void Board::SetCell(Vec2<int> pos_in, Color c)

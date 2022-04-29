@@ -3,7 +3,8 @@
 #include <iostream>
 #include"Vec2.h"
 
-Shape::Shape()
+Shape::Shape():
+	Element()
 {	
 	i = 0;
 	cells.resize(4);

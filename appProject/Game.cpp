@@ -8,6 +8,7 @@
 #include "Shape.h"
 #include<stdlib.h>
 
+
 #include "ollo.h"
 #include "TLeft.h"
 #include "TRight.h"
@@ -52,12 +53,25 @@ void Game::setShape()
 		}
 		nextNum = rand() % 7 + 1;
 
-		atBottom = false;
+		
 	}
 	//Check the previous shape if it has stopped moving, and randomly generate a new shape,set atbottom to false	
 }
 
 void Game::checkBottom()
+{   //supprimer plus tard
+	for (int i = 0; i < 4; i++)
+		if (shape->getCells()[i].getY() == 19) {
+			atBottom = true;
+			for (int k = 0; k < 10; k++)
+			{
+				std::cout << bottom[k] << ",";
+			}
+			std::cout << endl;
+			break;
+		}
+}
+/*void Game::checkBottom()
 {   //supprimer plus tard
 	for (int i = 0; i < 4; i++)
 		if (bottom[shape->getCells()[i].getX()] <= shape->getCells()[i].getY()) {
@@ -72,10 +86,10 @@ void Game::checkBottom()
 			break;
 		}
 
-}
+}*/
 void Game::Controll()
 {
-	
+
 	if (IsKeyDown(KEY_RIGHT)) {
 		if (shape->right() < 9)
 			shape->getInput(3);
@@ -101,66 +115,7 @@ Shape* Game::getRandomShape()
 {
 	return nullptr;
 }
-/*
-The main purpose of this function is to animate when our chessboard actually changes.
-But whether our chessboard can change needs to be judged by the CheckCells function.
 
-So, you will judge all the changes we can make in CheckCell, because CheckCell belongs to chessboard class,
-
-which contains all the information of our chessboard.
-When you successfully implement this function, the CheckBottom function in this class can be deleted,
-because it is only used to judge a situation of the chessboard.
-
-
-All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
-*/
-void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//所有board函数全部不需要
-	if (board->CheckCells(shape->getCells()) == 1) {
-
-		for (int i = 0; i < 4; i++)
-			if (shape->getCells()[i].getY() >= 0)
-				(*board).SetCell(shape->getCells()[i], WHITE);
-		for (int i = 0; i < 4; i++) {
-			bool mark = false;
-			for (int j = 0; j < 4; j++) {
-				if (lastpos[i] == shape->getCells()[j])
-				{
-					mark = true;
-				}
-			}
-			if (mark == false)
-				if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
-					(*board).SetCell(lastpos[i], RED);
-		}
-	}
-	else {
-		if (board->CheckCells(shape->getCells()) == 2)
-			//sinon revenez ?la position d'origine
-			shape->setCells(lastpos);
-		else
-		{	//Si le bas touche une autre forme, placez-la sur le plateau
-			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0) {
-					(*board).SetCell(shape->getCells()[j], WHITE);
-					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
-					//or some other figure.
-					//So, after the placement is complete, we should check if there is a row that can be eliminated
-
-				}
-				else {
-					std::cout << "game over" << endl;
-					(*board).getScore();
-				}
-
-
-
-
-
-
-		}
-	}
-}
 Game::Game(int width, int height, std::string title)
 	:board(RED), bloc()
 {
@@ -176,6 +131,7 @@ Game::Game(int width, int height, std::string title)
 	shape = new Square();
 	score = 0;
 	time = 0;
+	atBottom = false;
 	bottom.resize(10);
 	bottom.assign(10, 19);
 
@@ -236,13 +192,13 @@ void Game::Controll2()
 		}
 		else if (score <= 15000)// level up after 10000scores
 		{
-		//	now += 0.5;//down once per 0.5sec
+			//	now += 0.5;//down once per 0.5sec
 			now += 1;//down once per 0.5sec
 			level = 2;
 		}
 		else// level up after 10000 scores
 		{
-	//		now += 0.1;//down once per 0.1sec
+			//		now += 0.1;//down once per 0.1sec
 			now += 1;//down once per 0.1sec
 			level = 3;
 		}
@@ -253,36 +209,35 @@ void Game::Controll2()
 
 void Game::Update()
 {
+	std::vector<Vec2<int>> lastpos;
 	//initShape();
+	if (atBottom)
+	{
+		lastpos = shape->getCells();
+	}
 	setShape();
 	if (!atBottom) {
-		std::vector<Vec2<int>> lastpos = shape->getCells();
-
 		//Timer
 		Controll2();
 		Controll();
 		// changer plus tard
-		
 		checkBottom();
-		if (!atBottom)
-			animation(lastpos, shape, &board);
-		else {
-			animation(lastpos, shape, &board);
-			bloc.Update(lastpos);
-			for (int j = 0; j < 4; j++)
-				if (shape->getCells()[j].getY() >= 0) { // When cell is down the end
-					board.SetCell(shape->getCells()[j], WHITE);
-					//board.DrawNextCell(shape->getCells()[j], WHITE);//TODO
-				}
-
-				else
-					std::cout << "game over" << endl;
-		}
-		// changer plus tard
 	}
-
-
-
-
-
+	else {
+		
+		bloc.Update(lastpos);
+		atBottom = false;
+		for (int i = 0; i < 4; i++)
+		{
+			std::cout << "   X =  " << lastpos[i].getX() << "  Y =  " << lastpos[i].getY();
+		}
+		for (int j = 0; j < 4; j++)
+		{
+			if (shape->getCells()[j].getY() < 0)
+			{
+				std::cout << "game over" << endl;
+			}
+		}
+	}
+	// changer plus tard
 }
