@@ -9,11 +9,9 @@ class Board :
 {
 public:
 	Board(Color color);
-	void SetCell(Vec2<int> pos_in, Color c, int v);
+	void SetCell(Vec2<int> pos_in, Color c);
 	int CheckCells(std::vector<Vec2<int>> shape);
-	
 	void DrawBorder() const;
-	//void Draw() const;
 	void DrawNext(int type);
 	void DrawScore(std::string score);
 	void DrawLevel(std::string level);

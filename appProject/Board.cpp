@@ -42,7 +42,7 @@ Board::Board(Color color):
 
 }
 
-void Board::SetCell(Vec2<int> pos_in, Color c, int v)
+void Board::SetCell(Vec2<int> pos_in, Color c)
 {
 	assert(pos_in.getX() >= 0 && pos_in.getY() >= 0);
 	assert(pos_in.getX() < width && pos_in.getY() < height);

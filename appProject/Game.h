@@ -5,6 +5,7 @@
 #include "Shape.h"
 #include <vector>
 #include "ctime"
+#include "Bloc.h"
 class Game
 {
 private:
@@ -12,6 +13,7 @@ private:
 	void Update();
 	Board board;
 	Shape* shape;
+	Bloc bloc;
 	void setShape();
 
 	std::vector<int> bottom;

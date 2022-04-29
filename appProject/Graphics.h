@@ -13,13 +13,13 @@ public:
 	void DrawCell(Vec2<int> pos_in) const;
 	Graphics();
 	Graphics(Color color);
-	~Graphics(){}
+	~Graphics() {}
 
 protected:
 	int width;
 	int height;
-	 int cellSize;
-	 int padding;
+	int cellSize;
+	int padding;
 	Vec2<int> ScreenPos;
 };
 

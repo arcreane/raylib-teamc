@@ -20,6 +20,7 @@
 #include <thread>
 
 #include "Settings.h"
+
 using namespace std;
 using std::this_thread::sleep_for;
 using namespace std::chrono_literals;
@@ -114,26 +115,23 @@ because it is only used to judge a situation of the chessboard.
 All the animation effects have been written, you just need to implement the judgment of the chessboard situation.
 */
 void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
-{	//VÃ¯Â¿Â½rifiez l'Ã¯Â¿Â½tat de la carte avant de vous dÃ¯Â¿Â½placer.
-	//S'il est possible de se dÃ¯Â¿Â½placer, dÃ¯Â¿Â½placez-vous, sinon revenez ?la position d'origine
+{	//所有board函数全部不需要
 	if (board->CheckCells(shape->getCells()) == 1) {
-		//Toutes les fonctions de cette branche sont utilisÃ©es pour animer le mouvement des graphiques.
 
 		for (int i = 0; i < 4; i++)
 			if (shape->getCells()[i].getY() >= 0)
-				(*board).SetCell(shape->getCells()[i], WHITE, 1);
+				(*board).SetCell(shape->getCells()[i], WHITE);
 		for (int i = 0; i < 4; i++) {
 			bool mark = false;
 			for (int j = 0; j < 4; j++) {
 				if (lastpos[i] == shape->getCells()[j])
 				{
-
 					mark = true;
 				}
 			}
 			if (mark == false)
 				if (lastpos[i].getX() >= 0 && lastpos[i].getY() >= 0)
-					(*board).SetCell(lastpos[i], RED, 0);
+					(*board).SetCell(lastpos[i], RED);
 		}
 	}
 	else {
@@ -144,7 +142,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 		{	//Si le bas touche une autre forme, placez-la sur le plateau
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0) {
-					(*board).SetCell(shape->getCells()[j], WHITE, 1);
+					(*board).SetCell(shape->getCells()[j], WHITE);
 					//Here, a figure is stacked on the board because its bottom touches the lower bound of the board, 
 					//or some other figure.
 					//So, after the placement is complete, we should check if there is a row that can be eliminated
@@ -164,7 +162,7 @@ void Game::animation(std::vector<Vec2<int>> lastpos, Shape* shape, Board* board)
 	}
 }
 Game::Game(int width, int height, std::string title)
-	:board(RED)
+	:board(RED), bloc()
 {
 	assert(!GetWindowHandle());
 	InitWindow(width, height, title.c_str());
@@ -172,10 +170,11 @@ Game::Game(int width, int height, std::string title)
 	for (int iY = 0; iY < 20; iY++)
 		for (int iX = 0; iX < 10; iX++)
 		{
-			board.SetCell({ iX, iY }, RED, 0);
+			board.SetCell({ iX, iY }, RED);
 		}
 
 	shape = new Square();
+	
 	score = 0;
 	time = 0;
 	bottom.resize(10);
@@ -196,7 +195,7 @@ void Game::Tick()
 	Update();
 	Draw();
 	
-	scores += 100;
+	//scores += 100;
 	EndDrawing();
 }
 
@@ -217,6 +216,7 @@ void Game::Draw()
 	//
 	board.Draw();
 	shape->Draw();
+	bloc.Draw();
 	board.DrawBorder();
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
@@ -264,14 +264,16 @@ void Game::Update()
 		Controll2();
 		Controll();
 		// changer plus tard
+		
 		checkBottom();
 		if (!atBottom)
 			animation(lastpos, shape, &board);
 		else {
 			animation(lastpos, shape, &board);
+			bloc.Update(lastpos);
 			for (int j = 0; j < 4; j++)
 				if (shape->getCells()[j].getY() >= 0) { // When cell is down the end
-					board.SetCell(shape->getCells()[j], WHITE, 1);
+					board.SetCell(shape->getCells()[j], WHITE);
 					//board.DrawNextCell(shape->getCells()[j], WHITE);//TODO
 				}
 
