@@ -1,6 +1,8 @@
 #pragma once
 #include <raylib.h>
-#include "Cell.h"
+#include "Vec2.h"
+#include "raylibcpp.h"
+
 #include<vector>
 class Graphics
 {

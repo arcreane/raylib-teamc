@@ -3,7 +3,6 @@
 #include <vector>
 #include "Vec2.h"
 #include <string>
-#include "Cell.h"
 #include "Graphics.h"
 class Board :
 	public Graphics

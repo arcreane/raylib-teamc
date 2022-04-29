@@ -161,7 +161,6 @@
   <ItemGroup>
     <ClCompile Include="Bloc.cpp" />
     <ClCompile Include="Bomb.cpp" />
-    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="ollo.cpp" />
@@ -181,7 +180,6 @@
   <ItemGroup>
     <ClInclude Include="Bloc.h" />
     <ClInclude Include="Bomb.h" />
-    <ClInclude Include="Cell.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="ollo.h" />
