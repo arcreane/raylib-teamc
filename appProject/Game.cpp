@@ -20,8 +20,12 @@
 
 #include <chrono>
 #include <thread>
-
 #include "Settings.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+using namespace std;
 
 using namespace std;
 using std::this_thread::sleep_for;
@@ -179,6 +183,7 @@ void Game::Draw()
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
 	board.DrawScore(to_string(score));  //change value later
+	//board.DrawPlayersScore();
 
 
 
@@ -245,6 +250,81 @@ void Game::Update()
 				char name[20];
 				std::cout << "Enter your name: ";
 				std::cin >> name;
+				fstream ifs("score.txt", ios::in);
+				vector<string> Pseudo = {};
+				vector<int> Score = {};
+				if (ifs)
+				{
+					string nom;
+					string point;
+					/*cout << "Pseudo  Score" << endl;*/
+					while (!ifs.eof())
+					{
+						ifs >> nom;
+						if (!ifs.fail()) {
+							//cout << name;
+							Pseudo.push_back(nom);
+
+						}
+						ifs >> point;
+
+						if (!ifs.fail()) {
+							int numero;
+							istringstream(point) >> numero;
+							//cout << " " << score << endl;
+							Score.push_back(numero);
+						}
+
+					}
+					int compt = 0;
+					score = score + 10023;
+					for (auto& elm : Score) {
+						if (score <= elm) {
+							compt++;
+						}
+
+					}
+					cout << compt << endl;
+					//cout << "Les compteurs " << compt << endl;
+					ifs.close();
+					if (score ==0)
+					{
+						ofstream file("score.txt", ios::app);
+						file << name << " " << score << endl;
+						file.close();
+					}
+					else
+					{
+						std::ofstream file("score.txt", ios::out);
+						int compteur = 0;
+
+						cout << score << endl;
+						for (size_t i = 0; i < Score.size(); i++)
+
+						{
+							if (score == 0) {
+
+							}
+							else
+							{
+								if (compteur == compt) {
+									file << name << " " << score << endl;
+									file << Pseudo[i] << " " << Score[i] << endl;
+								}
+								else
+								{
+									file << Pseudo[i] << " " << Score[i] << endl;
+								}
+								compteur++;
+							}
+						}
+						file.close();
+					}
+					
+					
+
+				}
+				exit(1);
 			}
 		}
 	}

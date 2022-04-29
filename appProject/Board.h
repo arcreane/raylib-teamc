@@ -15,6 +15,7 @@ public:
 	void DrawNext(int type);
 	void DrawScore(std::string score);
 	void DrawLevel(std::string level);
+	void DrawPlayersScore();
 	int getScore();//tache 4
 	//int buttomY;
 	//int RemoveLines();

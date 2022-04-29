@@ -3,6 +3,11 @@
 #include "Shape.h"
 #include <vector>
 #include "Vec2.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+using namespace std;
 
 /*int Board::RemoveLines()
 {
@@ -186,6 +191,33 @@ void Board::DrawLevel(std::string level)
 	const char* text = "Level: ";
 	DrawText(text, posX, posY2, fontSize2, WHITE);
 	DrawText(levels, posX, posY, fontSize, WHITE);
+}
+
+void Board::DrawPlayersScore()
+{
+	int posX = 620;
+	int posY = 200;
+	int posY1 = 200 + 30;
+	int posY2 = 200 + 60;
+	int posY3 = 200 + 90;
+	int fontSize = 20;
+
+
+	fstream ifs("score.txt", ios::in);
+	string line;
+	string line1;
+	string line2;
+	getline(ifs, line);
+	getline(ifs, line1);
+	getline(ifs, line2);
+	char* ptrtext = &line[0];
+	char* ptrtext1 = &line1[0];
+	char* ptrtext2 = &line2[0];
+	DrawText("Players", posX, posY, fontSize, WHITE);
+	DrawText(ptrtext, posX, posY1, fontSize, WHITE);
+	DrawText(ptrtext1, posX, posY2, fontSize, WHITE);
+	DrawText(ptrtext2, posX, posY3, fontSize, WHITE);
+	ifs.close();
 }
 
 int Board::getScore()

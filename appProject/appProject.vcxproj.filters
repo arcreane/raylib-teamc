@@ -123,4 +123,9 @@
       <Filter>head</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="score.txt">
+      <Filter>resources</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
