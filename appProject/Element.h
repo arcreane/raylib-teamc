@@ -9,6 +9,7 @@ protected:
 	int i;
 	virtual void Turn() {};
 public:
+	//Element();
     Element():Graphics() {};
 	std::vector<Vec2<int>> getCells();
 	void setCells(std::vector<Vec2<int>> c);

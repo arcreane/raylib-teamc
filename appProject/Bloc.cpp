@@ -1,7 +1,7 @@
 #include "Bloc.h"
 #include <cassert>
 #include <vector>
-#include<iostream>
+#include <iostream>
 #include <algorithm>
 
 

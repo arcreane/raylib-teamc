@@ -8,7 +8,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
 
-    Game game{ settings::screenWidth,settings::screenHeight,"Rondo123" };
+    Game game{ settings::screenWidth,settings::screenHeight,"Tetris" };
 
     while (!game.GameShouldClose())
     {

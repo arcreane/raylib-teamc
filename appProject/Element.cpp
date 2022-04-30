@@ -1,4 +1,6 @@
 #include "Element.h"
+#include "Graphics.h"
+
 
 std::vector<Vec2<int>> Element::getCells()
 {

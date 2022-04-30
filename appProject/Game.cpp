@@ -21,13 +21,12 @@
 #include <chrono>
 #include <thread>
 #include "Settings.h"
-#include <iostream>
+
 #include <fstream>
 #include <vector>
 #include <sstream>
-using namespace std;
 
-using namespace std;
+
 using std::this_thread::sleep_for;
 using namespace std::chrono_literals;
 TimerClock tc;
@@ -183,7 +182,7 @@ void Game::Draw()
 	board.DrawNext(nextNum);
 	board.DrawLevel(to_string(level));
 	board.DrawScore(to_string(score));  //change value later
-	//board.DrawPlayersScore();
+	board.DrawPlayersScore();
 
 
 
@@ -277,7 +276,7 @@ void Game::Update()
 
 					}
 					int compt = 0;
-					score = score + 10023;
+					//score = score + 10023;
 					for (auto& elm : Score) {
 						if (score <= elm) {
 							compt++;
@@ -287,7 +286,7 @@ void Game::Update()
 					cout << compt << endl;
 					//cout << "Les compteurs " << compt << endl;
 					ifs.close();
-					if (score ==0)
+					if (score == 0)
 					{
 						ofstream file("score.txt", ios::app);
 						file << name << " " << score << endl;
@@ -320,13 +319,13 @@ void Game::Update()
 						}
 						file.close();
 					}
-					
-					
+
+
 
 				}
 				exit(1);
 			}
 		}
 	}
-	// changer plus tard
 }
+	// changer plus tard
